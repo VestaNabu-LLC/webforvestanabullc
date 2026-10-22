@@ -502,35 +502,11 @@ details p {
   }
 }
 
-/* Contact */
-.contact-card {
-  display: inline-flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  background: var(--color-surface);
-  font-style: normal;
-}
-
-.contact-phone {
-  color: var(--color-ink);
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.contact-phone:hover {
-  color: var(--color-accent);
-}
-
 /* Footer */
 .site-footer {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: var(--space-3) var(--space-2) var(--space-4);
+  padding: var(--space-4) var(--space-2) var(--space-4);
   border-top: 1px solid var(--color-border);
   color: var(--color-muted);
   font-size: 0.9rem;
@@ -538,6 +514,23 @@ details p {
 
 .site-footer p {
   margin: 0;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+.footer-contact a {
+  color: var(--color-ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  color: var(--color-accent);
 }
 
 /* Small screens */
