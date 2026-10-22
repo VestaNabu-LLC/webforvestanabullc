@@ -6,11 +6,11 @@
   --color-ink: #eef0f6;
   --color-muted: #9ca3b8;
   --color-border: #232939;
-  --color-accent: #ffb547;
+  --color-accent: #facc15;
   --color-accent-ink: #1a1305;
-  --color-cool: #7c8cff;
-  --color-glow-warm: rgba(255, 181, 71, 0.22);
-  --color-glow-cool: rgba(124, 140, 255, 0.2);
+  --color-cool: #f472b6;
+  --color-glow-warm: rgba(250, 204, 21, 0.22);
+  --color-glow-cool: rgba(244, 114, 182, 0.2);
 
   --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -34,11 +34,11 @@
     --color-ink: #12141c;
     --color-muted: #5a6175;
     --color-border: #dfe2ec;
-    --color-accent: #e89a1f;
+    --color-accent: #eab308;
     --color-accent-ink: #1a1305;
-    --color-cool: #4f5fe0;
-    --color-glow-warm: rgba(232, 154, 31, 0.18);
-    --color-glow-cool: rgba(79, 95, 224, 0.14);
+    --color-cool: #db2777;
+    --color-glow-warm: rgba(234, 179, 8, 0.18);
+    --color-glow-cool: rgba(219, 39, 119, 0.14);
   }
 }
 
@@ -49,11 +49,11 @@
   --color-ink: #12141c;
   --color-muted: #5a6175;
   --color-border: #dfe2ec;
-  --color-accent: #e89a1f;
+  --color-accent: #eab308;
   --color-accent-ink: #1a1305;
-  --color-cool: #4f5fe0;
-  --color-glow-warm: rgba(232, 154, 31, 0.18);
-  --color-glow-cool: rgba(79, 95, 224, 0.14);
+  --color-cool: #db2777;
+  --color-glow-warm: rgba(234, 179, 8, 0.18);
+  --color-glow-cool: rgba(219, 39, 119, 0.14);
 }
 
 *,
