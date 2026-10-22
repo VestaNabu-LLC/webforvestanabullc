@@ -328,6 +328,18 @@ main {
   border-color: var(--color-cool);
 }
 
+.tile-link {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  color: var(--color-cool);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tile-link:hover {
+  color: var(--color-accent);
+}
+
 .tile-wide {
   grid-column: span 2;
 }
