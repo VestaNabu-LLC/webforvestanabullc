@@ -9,13 +9,13 @@
       content="VestaNabu LLC is an Owatonna, Minnesota company building small, thoughtful products, including Monaidea, Ledgerstone for Jira, snap2local and more."
     />
     <meta property="og:title" content="VestaNabu LLC" />
-    <meta property="og:description" content="Small, thoughtful products built with care." />
+    <meta property="og:description" content="One umbrella. Many small, thoughtful things." />
     <meta property="og:url" content="https://www.vestanabullc.com" />
     <link rel="canonical" href="https://www.vestanabullc.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -23,11 +23,8 @@
   <body>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="VestaNabu LLC home">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-          <circle cx="16" cy="16" r="15" />
-          <path d="M16 7c2.5 4 5 6.5 5 10a5 5 0 0 1-10 0c0-2.2 1.2-3.8 2.5-5 .3 1.6 1 2.6 2 3 0-2.4 0-4.6.5-8z" />
-        </svg>
-        <span>VestaNabu</span>
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>VestaNabu<span class="brand-suffix"> LLC</span></span>
       </a>
       <nav class="site-nav" aria-label="Main">
         <a href="#about">About</a>
@@ -39,78 +36,89 @@
     <main id="top">
       <section class="hero">
         <p class="eyebrow">Owatonna, Minnesota</p>
-        <h1>Small, thoughtful products, built with care.</h1>
+        <h1>One umbrella.<br /><span class="gradient-text">Many small things.</span></h1>
         <p class="lead">
-          VestaNabu LLC is the home for a growing family of projects, from focused tools for specialists to everyday
-          apps for the people around us.
+          VestaNabu LLC is the home for focused products, from niche tools for specialists to everyday apps for the
+          people around us.
         </p>
-        <a class="button" href="#projects">See our projects</a>
-        <div class="hero-glow" aria-hidden="true"></div>
+        <a class="button" href="#projects">Explore projects</a>
+        <div class="hero-orbs" aria-hidden="true">
+          <span class="orb orb-warm"></span>
+          <span class="orb orb-cool"></span>
+        </div>
       </section>
 
-      <section id="about" class="section">
-        <h2>About</h2>
-        <p>
-          VestaNabu LLC is a Minnesota company that designs, builds and looks after its own products. Everything here
-          sits under one umbrella, so each project gets room to grow on its own terms.
+      <section id="about" class="section about">
+        <div class="stat-row">
+          <div class="stat">
+            <span class="stat-value">2026</span>
+            <span class="stat-label">Founded</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">MN</span>
+            <span class="stat-label">Based in Owatonna</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">3+</span>
+            <span class="stat-label">Projects and counting</span>
+          </div>
+        </div>
+        <p class="about-text">
+          We design, build and look after our own products. Everything here sits under one roof, so each project can
+          grow on its own terms.
         </p>
-        <ul class="facts">
-          <li><span class="fact-value">2026</span><span class="fact-label">Founded</span></li>
-          <li><span class="fact-value">MN</span><span class="fact-label">Based in Owatonna</span></li>
-          <li><span class="fact-value">3+</span><span class="fact-label">Projects and counting</span></li>
-        </ul>
       </section>
 
       <section id="projects" class="section">
         <h2>Projects</h2>
         <p class="section-intro">Everything we build lives under the VestaNabu umbrella.</p>
 
-        <div class="project-grid">
-          <article class="card card-teaser">
-            <span class="badge">Coming soon</span>
+        <div class="bento">
+          <article class="tile tile-wide tile-teaser">
+            <span class="pill">Coming soon</span>
             <h3>VestaNabu Photos</h3>
             <p class="tagline">Memories stay. Stories travel.</p>
-            <p>
+            <p class="muted">
               Some moments were meant to stay put. Others deserve to be shared. We are building a new home for both.
             </p>
             <details>
               <summary>Learn more</summary>
-              <p>We are keeping the details close for now. Check back soon to see what we have been working on.</p>
+              <p class="muted">We are keeping the details close for now. Check back soon.</p>
             </details>
           </article>
 
-          <article class="card card-group">
-            <span class="badge">Monaidea</span>
+          <article class="tile tile-group">
+            <span class="pill pill-accent">Monaidea</span>
             <h3>Monaidea</h3>
             <p class="tagline">Small and elegant solutions for niche areas.</p>
-            <p>
-              Monaidea is part of the VestaNabu family. It is the software brand behind our focused tools, starting with
-              Ledgerstone. Visit <a href="https://monaidea.com" rel="noopener">monaidea.com</a> for the full picture.
+            <p class="muted">
+              Part of the VestaNabu family, the software brand behind our focused tools. Visit
+              <a href="https://monaidea.com" rel="noopener">monaidea.com</a>.
             </p>
 
-            <div class="sub-card">
+            <div class="sub-tile">
               <h4>Ledgerstone for Jira</h4>
-              <p>A read-only permission audit for Jira Cloud admins. Free for up to 10 users.</p>
+              <p class="muted">A read-only permission audit for Jira Cloud admins. Free for up to 10 users.</p>
               <details>
                 <summary>Learn more</summary>
-                <p>
-                  Ledgerstone shows how open your Jira really is: permission schemes, shared filters and dashboards,
-                  roles, groups and accounts, with a weekly trend. Available on the
+                <p class="muted">
+                  See how open your Jira really is: permission schemes, shared filters and dashboards, roles, groups and
+                  accounts, with a weekly trend. Find it on the
                   <a href="https://ledgerstone.monaidea.com/" rel="noopener">Ledgerstone site</a>.
                 </p>
               </details>
             </div>
           </article>
 
-          <article class="card">
-            <span class="badge">snap2local.com</span>
+          <article class="tile tile-snap">
+            <span class="pill pill-accent">snap2local.com</span>
             <h3>snap2local</h3>
             <p class="tagline">Buy and sell, right around the corner.</p>
-            <p>A useful, easy way to buy and sell locally, with neighbors instead of strangers across the country.</p>
+            <p class="muted">A useful, easy way to buy and sell locally, with neighbors instead of strangers across the country.</p>
             <details>
               <summary>Learn more</summary>
-              <p>
-                Visit <a href="https://snap2local.com" rel="noopener">snap2local.com</a> to take a look.
+              <p class="muted">
+                Take a look at <a href="https://snap2local.com" rel="noopener">snap2local.com</a>.
               </p>
             </details>
           </article>
@@ -121,11 +129,9 @@
 
       <section id="contact" class="section">
         <h2>Contact</h2>
-        <address>
-          <p>
-            <a href="tel:+17633318899">(763) 331-8899</a>
-          </p>
-          <p>202 N Cedar Ave, Ste 1<br />Owatonna, MN 55060</p>
+        <address class="contact-card">
+          <a class="contact-phone" href="tel:+17633318899">(763) 331-8899</a>
+          <p class="muted">202 N Cedar Ave, Ste 1<br />Owatonna, MN 55060</p>
         </address>
       </section>
     </main>
