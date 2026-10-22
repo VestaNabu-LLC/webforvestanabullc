@@ -1,6 +1,6 @@
 // Contact form: sends the form to the Worker and shows the result.
 // Replace WORKER_URL with the URL Wrangler prints after deploying worker/.
-const WORKER_URL = "https://vestanabu-contact.REPLACE_ME.workers.dev";
+const WORKER_URL = "https://vestanabu-contact.sebastiancanevari.workers.dev";
 
 const form = document.getElementById("inquiry");
 const status = form.querySelector(".form-status");
