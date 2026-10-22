@@ -141,7 +141,7 @@
             <p class="muted">
               Bring us a concept for an app, a tool or a marketplace. We help shape it, build it and launch it.
             </p>
-            <a class="tile-link" href="mailto:info@vestanabullc.com?subject=Build%20together">Start a conversation</a>
+            <a class="tile-link" href="#inquiry">Start a conversation</a>
           </article>
 
           <article class="tile">
@@ -150,7 +150,7 @@
             <p class="muted">
               Jira permissions and access reviews, product strategy, and making a small tool work for your team.
             </p>
-            <a class="tile-link" href="mailto:info@vestanabullc.com?subject=Consulting%20inquiry">Ask for advice</a>
+            <a class="tile-link" href="#inquiry">Ask for advice</a>
           </article>
 
           <article class="tile">
@@ -159,9 +159,47 @@
             <p class="muted">
               Agencies, studios and other builders: let's share work, skills and reach where it makes sense.
             </p>
-            <a class="tile-link" href="mailto:info@vestanabullc.com?subject=Partnership%20inquiry">Explore a partnership</a>
+            <a class="tile-link" href="#inquiry">Explore a partnership</a>
           </article>
         </div>
+
+        <form id="inquiry" class="inquiry-form" action="#" method="post" novalidate>
+          <div class="form-row">
+            <label class="form-field">
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" maxlength="120" required />
+            </label>
+            <label class="form-field">
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" maxlength="200" required />
+            </label>
+          </div>
+
+          <label class="form-field">
+            <span>What are you interested in?</span>
+            <select name="interest">
+              <option>Build together</option>
+              <option>Consulting</option>
+              <option>Partnership</option>
+              <option>Something else</option>
+            </select>
+          </label>
+
+          <label class="form-field">
+            <span>Tell us a bit about it</span>
+            <textarea name="message" rows="5" maxlength="4000" required></textarea>
+          </label>
+
+          <!-- Honeypot: hidden from people, filled in by bots. -->
+          <div class="hp-field" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
+          <div class="cf-turnstile" data-sitekey="REPLACE_WITH_TURNSTILE_SITE_KEY" data-theme="auto"></div>
+
+          <button class="button" type="submit">Send message</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </section>
 
       <section id="contact" class="section">
@@ -172,6 +210,9 @@
         </address>
       </section>
     </main>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script src="script.js" defer></script>
 
     <footer class="site-footer">
       <p>&copy; 2026 VestaNabu LLC. All rights reserved.</p>

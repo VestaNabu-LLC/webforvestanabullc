@@ -1,0 +1,11 @@
+name = "vestanabu-contact"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# Set these as secrets, never in this file:
+#   wrangler secret put POSTMARK_SERVER_TOKEN
+#   wrangler secret put TURNSTILE_SECRET
+
+[vars]
+FROM_EMAIL = "info@vestanabullc.com"
+TO_EMAIL = "info@vestanabullc.com"

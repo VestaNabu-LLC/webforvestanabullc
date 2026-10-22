@@ -409,6 +409,99 @@ details p {
   font-family: var(--font-display);
 }
 
+/* Inquiry form */
+.inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 40rem;
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  scroll-margin-top: 6rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: 2px solid var(--color-cool);
+  outline-offset: 2px;
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.inquiry-form .button {
+  align-self: flex-start;
+  margin-top: 0;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.inquiry-form .button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.form-status {
+  min-height: 1.5em;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.form-status[data-state="success"] {
+  color: var(--color-cool);
+}
+
+.form-status[data-state="error"] {
+  color: #e5484d;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Contact */
 .contact-card {
   display: inline-flex;
