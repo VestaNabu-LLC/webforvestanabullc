@@ -1,0 +1,28 @@
+/* Scope to the company UI. Do not import into product applications. */
+@font-face {font-family:"Instrument Sans";src:url("../fonts/InstrumentSans-Variable.woff2") format("woff2");font-weight:400 700;font-style:normal;font-display:swap;}
+.vn-brand {
+ --vn-oxide:#B54035; --vn-chalk:#F5F1E9; --vn-ink:#242021;
+ --vn-muted:#6E625F; --vn-separator:#D9CEC4; --vn-input-border:#887771;
+ --vn-hover:#97362E; --vn-font:"Instrument Sans",Arial,sans-serif;
+ --vn-content:1200px; --vn-radius:8px;
+ --vn-space-1:4px; --vn-space-2:8px; --vn-space-3:12px;
+ --vn-space-4:16px; --vn-space-6:24px; --vn-space-8:32px;
+ --vn-space-12:48px; --vn-space-16:64px; --vn-space-24:96px;
+ font-family:var(--vn-font); color:var(--vn-ink); background:var(--vn-chalk);
+ font-synthesis:none; font-size:18px; line-height:1.55;
+}
+.vn-shell{max-width:var(--vn-content);margin-inline:auto;padding-inline:clamp(20px,4vw,48px);}
+.vn-logo{display:block;width:clamp(152px,18vw,208px);height:auto;flex-shrink:0;}
+.vn-h1{font-size:clamp(44px,6.3vw,84px);line-height:1.04;letter-spacing:-.035em;font-weight:500;max-width:11ch;margin:0;}
+.vn-h2{font-size:clamp(30px,3.5vw,48px);line-height:1.12;letter-spacing:-.025em;font-weight:500;}
+.vn-lead{font-size:clamp(20px,2.1vw,26px);line-height:1.45;max-width:36ch;}
+.vn-label{font-size:14px;line-height:1.4;font-weight:500;letter-spacing:.02em;}
+.vn-section{padding-block:clamp(56px,7vw,96px);}
+.vn-inverse{background:var(--vn-oxide);color:var(--vn-chalk);}
+.vn-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:12px 24px;border:1px solid transparent;border-radius:999px;background:var(--vn-oxide);color:var(--vn-chalk);font:500 16px/1.35 var(--vn-font);text-decoration:none;cursor:pointer;transition:background-color 150ms ease;}
+.vn-button:hover{background:var(--vn-hover);}
+.vn-inverse .vn-button{background:var(--vn-chalk);color:var(--vn-oxide);}
+.vn-inverse .vn-button:hover{background:#FFFFFF;}
+.vn-brand a:focus-visible,.vn-brand button:focus-visible,.vn-brand input:focus-visible,.vn-brand textarea:focus-visible,.vn-brand select:focus-visible{outline:3px solid currentColor;outline-offset:4px;}
+.vn-input{box-sizing:border-box;width:100%;min-height:48px;border:1px solid var(--vn-input-border);border-radius:var(--vn-radius);padding:12px 14px;background:#FFFFFF;color:var(--vn-ink);font:400 18px/1.45 var(--vn-font);}
+@media(prefers-reduced-motion:reduce){.vn-brand *{scroll-behavior:auto!important;transition:none!important;animation:none!important;}}

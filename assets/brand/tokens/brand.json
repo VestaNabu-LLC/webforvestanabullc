@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "name": "VestaNabu",
+  "legal_name": "VestaNabu LLC",
+  "tagline": "Good ideas, seen through.",
+  "descriptor": "Independent product company",
+  "primary_color": "#B54035",
+  "colors": {
+    "oxide": "#B54035",
+    "chalk": "#F5F1E9",
+    "ink": "#242021",
+    "muted": "#6E625F",
+    "separator": "#D9CEC4",
+    "input_border": "#887771",
+    "hover": "#97362E"
+  },
+  "typography": {
+    "wordmark": "Fixed outlined source-derived artwork; do not retype",
+    "family": "Instrument Sans",
+    "weights": [
+      400,
+      500,
+      600
+    ],
+    "license": "SIL Open Font License 1.1",
+    "woff2": "fonts/InstrumentSans-Variable.woff2"
+  },
+  "contrast_ratios": {
+    "#B54035 on #F5F1E9": 4.97,
+    "#F5F1E9 on #B54035": 4.97,
+    "#242021 on #F5F1E9": 14.3,
+    "#6E625F on #F5F1E9": 5.21,
+    "#887771 on #F5F1E9": 3.79
+  },
+  "symbol_source_canvas": {
+    "width": 417,
+    "height": 332,
+    "components": 2
+  },
+  "horizontal_master": {
+    "width": 376.6798887859129,
+    "height": 108,
+    "symbol_height": 72,
+    "wordmark_height": 38,
+    "gap": 24,
+    "padding": 18
+  },
+  "minimums": {
+    "horizontal_width_css_px": 152,
+    "symbol_height_css_px": 16,
+    "clearspace_symbol_height_fraction": 0.25
+  },
+  "scope": "Company identity only. Existing product names, identities, architecture and audiences remain unchanged."
+}
