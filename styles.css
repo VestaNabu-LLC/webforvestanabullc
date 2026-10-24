@@ -56,6 +56,15 @@ a:hover {
   max-width: 64ch;
 }
 
+/* Anchor targets clear the sticky header. */
+#main,
+#about,
+#projects,
+#work-with-us,
+.inquiry-form {
+  scroll-margin-top: 104px;
+}
+
 /* Skip link: hidden until it receives keyboard focus */
 .skip-link {
   position: absolute;
@@ -97,9 +106,21 @@ a:hover {
   font-variant-numeric: tabular-nums;
 }
 
-/* Header */
+/* Header: stays available while reading. Solid chalk, never translucent,
+   so the oxide hero can't bleed through behind the mark. */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   padding-block: var(--vn-space-6);
+  background: var(--vn-chalk);
+  border-bottom: 1px solid transparent;
+  transition: padding-block 200ms ease, border-color 200ms ease;
+}
+
+.site-header.is-stuck {
+  padding-block: var(--vn-space-3);
+  border-bottom-color: var(--vn-separator);
 }
 
 .site-header-inner {
@@ -638,6 +659,19 @@ details p {
 
 /* Mobile */
 @media (max-width: 768px) {
+  /* The header wraps to two rows here; sticking it would eat the viewport. */
+  .site-header {
+    position: static;
+  }
+
+  #main,
+  #about,
+  #projects,
+  #work-with-us,
+  .inquiry-form {
+    scroll-margin-top: var(--vn-space-4);
+  }
+
   .section-index {
     margin-bottom: var(--vn-space-8);
   }
@@ -684,8 +718,251 @@ details p {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Motion and interaction
+
+   The brand guide allows ~150ms colour/opacity transitions. Entrance reveals
+   go beyond that, deliberately, to give the page life. They stay within the
+   spirit of the rules: no moving logo, no wave or pulse, no scroll-dependent
+   reading, and nothing decorative in motion. Content is fully legible at rest.
+
+   Reveals are opt-in via the .js class, so with JavaScript disabled, or if the
+   observer never runs, every element renders visible.
+--------------------------------------------------------------------------- */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 620ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: calc(var(--d, 0) * 80ms);
+  will-change: opacity, transform;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* Selection carries the brand rather than the browser default. */
+::selection {
+  background: var(--vn-oxide);
+  color: var(--vn-chalk);
+}
+
+.collaborate ::selection,
+.site-footer ::selection {
+  background: var(--vn-chalk);
+  color: var(--vn-ink);
+}
+
+/* Links: underline thickens on hover instead of appearing from nowhere. */
+.product-detail a,
+.product-feature-prose a,
+details a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-thickness 150ms ease, color 150ms ease;
+}
+
+.product-detail a:hover,
+.product-feature-prose a:hover,
+details a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Nav, hero and offer links share one underline that wipes in from the left. */
+.site-nav a > span,
+.hero-link > span,
+.offer-link > span,
+.footer-details a > span {
+  position: relative;
+  display: inline-block;
+}
+
+.site-nav a > span::after,
+.hero-link > span::after,
+.offer-link > span::after,
+.footer-details a > span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.site-nav a:hover > span::after,
+.hero-link:hover > span::after,
+.offer-link:hover > span::after,
+.footer-details a:hover > span::after {
+  transform: scaleX(1);
+}
+
+/* These links carry their own underline, so drop the native one. */
+.hero-link,
+.offer-link,
+.footer-details a {
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  text-decoration: none;
+}
+
+/* Logo responds to the pointer without ever animating the mark itself. */
+.site-logo {
+  transition: opacity 150ms ease;
+}
+
+.site-logo:hover {
+  opacity: 0.78;
+}
+
+/* Button lifts slightly. Flat colour throughout, no shadow. */
+.vn-button {
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.vn-button:hover {
+  transform: translateY(-2px);
+}
+
+.vn-button:active {
+  transform: translateY(0);
+}
+
+/* Disclosure: native marker replaced with a chevron that turns on open. */
+details summary {
+  list-style: none;
+  gap: var(--vn-space-2);
+  transition: color 150ms ease;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  margin-bottom: 3px;
+  transform: rotate(45deg);
+  transition: transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+details[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+details summary:hover {
+  color: var(--vn-hover);
+}
+
+details[open] > p {
+  animation: vn-disclose 300ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes vn-disclose {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* Product rows: a quiet oxide rule follows the pointer down the list. */
+.product {
+  transition: border-bottom-color 220ms ease;
+}
+
+.product:hover {
+  border-bottom-color: var(--vn-oxide);
+}
+
+.product-name {
+  transition: color 150ms ease;
+}
+
+/* Principle and offer rules draw themselves in with the reveal. */
+.principles li,
+.offer {
+  border-top-color: transparent;
+  background-image: linear-gradient(var(--vn-oxide), var(--vn-oxide));
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  background-position: left top;
+  background-size: 0 2px;
+  transition: background-size 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: calc(var(--d, 0) * 80ms + 160ms);
+}
+
+.principles li.is-visible,
+.offer.is-visible,
+html:not(.js) .principles li,
+html:not(.js) .offer {
+  background-size: 100% 2px;
+}
+
+/* Form controls: border and ring settle rather than snap. */
+.vn-input {
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.vn-input:hover {
+  border-color: var(--vn-ink);
+}
+
+.form-submit {
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+/* The submit status is deliberately NOT animated. It must be readable the
+   instant it is set; an entrance animation risked leaving it at opacity 0. */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  /* Everything arrives at its end state immediately. */
+  .js .reveal,
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .principles li,
+  .offer {
+    background-size: 100% 2px;
+    transition: none;
+  }
+
+  .site-nav a > span::after,
+  .hero-link > span::after,
+  .offer-link > span::after,
+  .footer-details a > span::after {
+    transition: none;
+  }
+
+  details summary::after,
+  details[open] > p,
+  .vn-button,
+  .site-header {
+    transition: none;
+    animation: none;
+  }
+
+  .vn-button:hover {
+    transform: none;
   }
 }

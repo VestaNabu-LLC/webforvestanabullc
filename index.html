@@ -27,21 +27,26 @@
     <link rel="preload" as="font" type="font/woff2" href="assets/brand/fonts/InstrumentSans-Variable.woff2" crossorigin />
     <link rel="stylesheet" href="assets/brand/tokens/brand.css" />
     <!-- Versioned so a layout change can't be served against a 4h edge-cached stylesheet. Bump on CSS changes. -->
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="styles.css?v=4" />
+    <script>
+      /* Set before first paint so reveal start-states never flash.
+         Without JS the class is absent and all content stays visible. */
+      document.documentElement.classList.add("js");
+    </script>
   </head>
   <body class="vn-brand" id="top">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header">
+    <header class="site-header" data-header>
       <div class="vn-shell site-header-inner">
         <a class="site-logo" href="#top" aria-label="VestaNabu home">
           <img class="vn-logo" src="assets/brand/logos/svg/logo-horizontal-oxide.svg" alt="VestaNabu" width="377" height="108" />
         </a>
         <nav class="site-nav" aria-label="Main">
-          <a href="#projects">Products</a>
-          <a href="#about">Company</a>
-          <a href="#work-with-us">Collaborate</a>
-          <a href="#inquiry">Contact</a>
+          <a href="#projects"><span>Products</span></a>
+          <a href="#about"><span>Company</span></a>
+          <a href="#work-with-us"><span>Collaborate</span></a>
+          <a href="#inquiry"><span>Contact</span></a>
         </nav>
       </div>
     </header>
@@ -49,29 +54,31 @@
     <main id="main">
       <section class="hero vn-inverse">
         <div class="vn-shell hero-grid">
-          <p class="vn-label hero-eyebrow">Independent product company</p>
-          <h1 class="vn-h1"><span class="headline-line">Good ideas,</span> <span class="headline-line">seen through.</span></h1>
-          <div class="hero-aside">
+          <p class="vn-label hero-eyebrow reveal" style="--d: 0">Independent product company</p>
+          <h1 class="vn-h1 reveal" style="--d: 1">
+            <span class="headline-line">Good ideas,</span> <span class="headline-line">seen through.</span>
+          </h1>
+          <div class="hero-aside reveal" style="--d: 2">
             <p class="vn-lead">We create focused digital products and keep making them better.</p>
             <p class="hero-text">
               From specialist software to everyday applications, we build around clear needs. We also work with others
               to shape, build and launch useful ideas.
             </p>
           </div>
-          <div class="hero-actions">
+          <div class="hero-actions reveal" style="--d: 3">
             <a class="vn-button" href="#projects">Explore our work</a>
-            <a class="hero-link" href="#work-with-us">Build with us</a>
+            <a class="hero-link" href="#work-with-us"><span>Build with us</span></a>
           </div>
         </div>
       </section>
 
       <section id="about" class="vn-section">
         <div class="vn-shell">
-          <p class="section-index"><span class="section-number">01</span> Company</p>
+          <p class="section-index reveal"><span class="section-number">01</span> Company</p>
 
           <div class="about-grid">
-            <h2 class="vn-h2">Different ideas.<br />Shared commitment.</h2>
-            <div class="about-body">
+            <h2 class="vn-h2 reveal">Different ideas.<br />Shared commitment.</h2>
+            <div class="about-body reveal" style="--d: 1">
               <p>
                 VestaNabu creates, owns and looks after products for different people and different needs. What connects
                 the work is a practical approach: understand the problem, bring the right abilities together, and keep
@@ -85,15 +92,15 @@
           </div>
 
           <ul class="principles">
-            <li>
+            <li class="reveal" style="--d: 0">
               <h3>Think independently.</h3>
               <p>Different interests and abilities reveal opportunities across categories.</p>
             </li>
-            <li>
+            <li class="reveal" style="--d: 1">
               <h3>Make with purpose.</h3>
               <p>The work begins with a clear need and aims for a useful result.</p>
             </li>
-            <li>
+            <li class="reveal" style="--d: 2">
               <h3>Stay with the work.</h3>
               <p>Ownership includes maintenance, refinement and continued care.</p>
             </li>
@@ -103,15 +110,15 @@
 
       <section id="projects" class="vn-section projects">
         <div class="vn-shell">
-          <p class="section-index"><span class="section-number">02</span> Products</p>
+          <p class="section-index reveal"><span class="section-number">02</span> Products</p>
 
           <div class="projects-head">
-            <h2 class="vn-h2">Our products</h2>
-            <p class="section-intro">Focused products, each with a purpose and a character of its own.</p>
+            <h2 class="vn-h2 reveal">Our products</h2>
+            <p class="section-intro reveal" style="--d: 1">Focused products, each with a purpose and a character of its own.</p>
           </div>
 
           <div class="product-list">
-            <article class="product product-feature">
+            <article class="product product-feature reveal">
               <p class="product-label product-label-soon">Coming soon</p>
               <h3 class="product-name">VestaNabu</h3>
               <div class="product-feature-body">
@@ -121,14 +128,14 @@
                     Some moments were meant to stay put. Others deserve to be shared. A new home for both is on its way.
                   </p>
                   <details>
-                    <summary>Learn more</summary>
+                    <summary><span>Learn more</span></summary>
                     <p class="muted">We are keeping the details close for now. Check back soon.</p>
                   </details>
                 </div>
               </div>
             </article>
 
-            <article class="product">
+            <article class="product reveal">
               <div class="product-identity">
                 <p class="product-label">Software brand</p>
                 <h3 class="product-name">Monaidea</h3>
@@ -145,7 +152,7 @@
                   <h4>Ledgerstone for Jira</h4>
                   <p class="muted">A read-only permission audit for Jira Cloud administrators. Free for up to 10 users.</p>
                   <details>
-                    <summary>Learn more</summary>
+                    <summary><span>Learn more</span></summary>
                     <p class="muted">
                       See how open your Jira really is: permission schemes, shared filters and dashboards, roles, groups
                       and accounts, with a weekly trend. Find it on the
@@ -156,7 +163,7 @@
               </div>
             </article>
 
-            <article class="product">
+            <article class="product reveal">
               <div class="product-identity">
                 <p class="product-label">Local marketplace</p>
                 <h3 class="product-name">snap2local</h3>
@@ -167,7 +174,7 @@
                   A useful, easy way to buy and sell locally, with neighbors instead of strangers across the country.
                 </p>
                 <details>
-                  <summary>Learn more</summary>
+                  <summary><span>Learn more</span></summary>
                   <p class="muted">
                     Take a look at <a href="https://snap2local.com" rel="noopener">snap2local.com</a>.
                   </p>
@@ -176,41 +183,41 @@
             </article>
           </div>
 
-          <p class="closing-line">More useful things are in the works.</p>
+          <p class="closing-line reveal">More useful things are in the works.</p>
         </div>
       </section>
 
       <section id="work-with-us" class="vn-section collaborate">
         <div class="vn-shell">
-          <p class="section-index"><span class="section-number">03</span> Collaborate</p>
+          <p class="section-index reveal"><span class="section-number">03</span> Collaborate</p>
 
-          <h2 class="vn-h2 collaborate-heading">Have something useful in mind?</h2>
-          <p class="collaborate-intro">
+          <h2 class="vn-h2 collaborate-heading reveal">Have something useful in mind?</h2>
+          <p class="collaborate-intro reveal" style="--d: 1">
             Bring us an idea, a technical question or an opportunity to work together. Let's work through it.
           </p>
 
           <div class="offers">
-            <article class="offer">
+            <article class="offer reveal" style="--d: 0">
               <p class="offer-label">Build together</p>
               <h3>From an idea to a working product.</h3>
               <p>We help shape, build and launch apps, tools and marketplaces around real needs.</p>
-              <a class="offer-link" href="#inquiry">Start a conversation</a>
+              <a class="offer-link" href="#inquiry"><span>Start a conversation</span></a>
             </article>
 
-            <article class="offer">
+            <article class="offer reveal" style="--d: 1">
               <p class="offer-label">Consulting</p>
               <h3>A clear view of the technical work.</h3>
               <p>
                 Tell us what you're working on. We can help you understand the options and find a practical way forward.
               </p>
-              <a class="offer-link" href="#inquiry">Ask for advice</a>
+              <a class="offer-link" href="#inquiry"><span>Ask for advice</span></a>
             </article>
 
-            <article class="offer">
+            <article class="offer reveal" style="--d: 2">
               <p class="offer-label">Partners</p>
               <h3>Complementary skills. Shared work.</h3>
               <p>We work with agencies, studios and other builders where our abilities can strengthen one another.</p>
-              <a class="offer-link" href="#inquiry">Explore a partnership</a>
+              <a class="offer-link" href="#inquiry"><span>Explore a partnership</span></a>
             </article>
           </div>
         </div>
@@ -219,11 +226,11 @@
       <section class="vn-section inquiry">
         <div class="vn-shell inquiry-grid">
           <div class="inquiry-intro">
-            <p class="section-index"><span class="section-number">04</span> Contact</p>
-            <h2 class="vn-h2">Tell us what you have in mind.</h2>
+            <p class="section-index reveal"><span class="section-number">04</span> Contact</p>
+            <h2 class="vn-h2 reveal">Tell us what you have in mind.</h2>
           </div>
 
-          <form id="inquiry" class="inquiry-form" action="#" method="post" novalidate>
+          <form id="inquiry" class="inquiry-form reveal" style="--d: 1" action="#" method="post" novalidate>
             <div class="form-row">
               <label class="form-field">
                 <span class="vn-label">Name</span>
@@ -266,13 +273,13 @@
 
     <footer class="site-footer">
       <div class="vn-shell footer-inner">
-        <div class="footer-brand">
+        <div class="footer-brand reveal">
           <img class="footer-logo" src="assets/brand/logos/svg/logo-horizontal-chalk.svg" alt="VestaNabu" width="377" height="108" />
           <p class="footer-slogan">Good ideas, seen through.</p>
         </div>
-        <div class="footer-details">
+        <div class="footer-details reveal" style="--d: 1">
           <p class="footer-legal">VestaNabu LLC</p>
-          <p><a href="mailto:info@vestanabullc.com">info@vestanabullc.com</a></p>
+          <p><a href="mailto:info@vestanabullc.com"><span>info@vestanabullc.com</span></a></p>
           <p class="footer-address">202 N Cedar Ave, Ste 1<br />Owatonna, MN 55060</p>
         </div>
       </div>

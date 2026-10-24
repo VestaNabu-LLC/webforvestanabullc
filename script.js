@@ -1,5 +1,36 @@
+// Entrance reveals and header state. Kept in its own block so a failure here
+// can never stop the contact form from working, or the reverse.
+(function motion() {
+  const reveals = document.querySelectorAll(".reveal");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // No observer support, or the visitor asked for less motion: show everything.
+  if (!("IntersectionObserver" in window) || reduceMotion) {
+    reveals.forEach((el) => el.classList.add("is-visible"));
+  } else {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" },
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+  // Header tightens and gains a hairline once the page has moved.
+  const header = document.querySelector("[data-header]");
+  if (header) {
+    const sync = () => header.classList.toggle("is-stuck", window.scrollY > 8);
+    sync();
+    window.addEventListener("scroll", sync, { passive: true });
+  }
+})();
+
 // Contact form: sends the form to the Worker and shows the result.
-// Replace WORKER_URL with the URL Wrangler prints after deploying worker/.
 const WORKER_URL = "https://vestanabu-contact.sebastiancanevari.workers.dev";
 
 const form = document.getElementById("inquiry");
