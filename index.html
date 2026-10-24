@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="assets/brand/tokens/brand.css" />
     <!-- Versioned so a layout change can't be served against a 4h edge-cached stylesheet.
          Bump this AND the script.js version together on every CSS or JS change. -->
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=6" />
     <script>
       /* Set before first paint so reveal start-states never flash.
          Without JS the class is absent and all content stays visible. */
@@ -66,7 +66,7 @@
       <section class="hero vn-inverse">
         <div class="vn-shell hero-grid">
           <div class="hero-copy">
-            <p class="vn-label hero-eyebrow reveal" style="--d: 0">Independent product company</p>
+            <p class="hero-eyebrow reveal" style="--d: 0"><span class="chip chip-hero">Independent product company</span></p>
             <h1 class="hero-title reveal" style="--d: 1">
               <span class="headline-line">Good ideas,</span>
               <span class="headline-line">seen through.</span>
@@ -93,7 +93,7 @@
           <p class="section-index reveal"><span class="section-number">01</span> Company</p>
 
           <div class="about-grid">
-            <h2 class="section-title reveal">Different ideas.<br />Shared commitment.</h2>
+            <h2 class="section-title reveal">Different ideas.<br /><span class="accent">Shared commitment.</span></h2>
             <div class="about-body reveal" style="--d: 1">
               <p>
                 VestaNabu creates, owns and looks after products for different people and different needs. What connects
@@ -106,6 +106,13 @@
               </p>
             </div>
           </div>
+
+
+          <ul class="facts reveal" style="--d: 2">
+            <li><span class="fact-value">2026</span><span class="fact-label">Founded</span></li>
+            <li><span class="fact-value">Owatonna, MN</span><span class="fact-label">Based in</span></li>
+            <li><span class="fact-value">Three</span><span class="fact-label">Products and counting</span></li>
+          </ul>
 
           <ul class="principles">
             <li class="reveal" style="--d: 0">
@@ -134,16 +141,16 @@
           </div>
         </div>
 
-        <div class="product-list">
-          <article class="product product-feature reveal">
-            <div class="vn-shell product-inner">
-              <div class="product-head">
+        <div class="vn-shell">
+          <div class="product-grid">
+            <article class="product-card product-card-feature reveal">
+              <div class="card-head">
                 <span class="product-index">01</span>
-                <p class="product-label product-label-soon">Coming soon</p>
+                <span class="chip chip-soon">Coming soon</span>
               </div>
               <h3 class="product-name">VestaNabu</h3>
               <p class="product-statement">Memories stay.<br />Stories travel.</p>
-              <div class="product-prose">
+              <div class="card-body">
                 <p class="muted">
                   Some moments were meant to stay put. Others deserve to be shared. A new home for both is on its way.
                 </p>
@@ -152,72 +159,65 @@
                   <p class="muted">We are keeping the details close for now. Check back soon.</p>
                 </details>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="product reveal">
-            <div class="vn-shell product-inner">
-              <div class="product-head">
+            <article class="product-card reveal">
+              <div class="card-head">
                 <span class="product-index">02</span>
-                <p class="product-label">Software brand</p>
+                <span class="chip">Software brand</span>
               </div>
-              <div class="product-body">
-                <div class="product-identity">
-                  <h3 class="product-name">Monaidea</h3>
-                  <p class="product-tagline">Small and elegant solutions for niche areas.</p>
-                </div>
-                <div class="product-detail">
+              <h3 class="product-name">Monaidea</h3>
+              <p class="product-tagline">Small and elegant solutions for niche areas.</p>
+              <p class="muted">
+                Our software brand for focused tools. Visit
+                <a href="https://monaidea.com" rel="noopener">monaidea.com</a>.
+              </p>
+
+              <div class="nested-product">
+                <p class="nested-label">Inside Monaidea</p>
+                <h4>Ledgerstone for Jira</h4>
+                <p class="muted">A read-only permission audit for Jira Cloud administrators.</p>
+                <ul class="chips">
+                  <li>Read-only</li>
+                  <li>Jira Cloud</li>
+                  <li>Free up to 10 users</li>
+                </ul>
+                <details>
+                  <summary><span>Learn more</span></summary>
                   <p class="muted">
-                    Our software brand for focused tools. Visit
-                    <a href="https://monaidea.com" rel="noopener">monaidea.com</a>.
+                    See how open your Jira really is: permission schemes, shared filters and dashboards, roles, groups
+                    and accounts, with a weekly trend. Find it on the
+                    <a href="https://ledgerstone.monaidea.com/" rel="noopener">Ledgerstone site</a>.
                   </p>
-
-                  <div class="nested-product">
-                    <p class="product-label">Inside Monaidea</p>
-                    <h4>Ledgerstone for Jira</h4>
-                    <p class="muted">A read-only permission audit for Jira Cloud administrators. Free for up to 10 users.</p>
-                    <details>
-                      <summary><span>Learn more</span></summary>
-                      <p class="muted">
-                        See how open your Jira really is: permission schemes, shared filters and dashboards, roles,
-                        groups and accounts, with a weekly trend. Find it on the
-                        <a href="https://ledgerstone.monaidea.com/" rel="noopener">Ledgerstone site</a>.
-                      </p>
-                    </details>
-                  </div>
-                </div>
+                </details>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="product reveal">
-            <div class="vn-shell product-inner">
-              <div class="product-head">
+            <article class="product-card reveal">
+              <div class="card-head">
                 <span class="product-index">03</span>
-                <p class="product-label">Local marketplace</p>
+                <span class="chip">Local marketplace</span>
               </div>
-              <div class="product-body">
-                <div class="product-identity">
-                  <h3 class="product-name">snap2local</h3>
-                  <p class="product-tagline">Buy and sell, right around the corner.</p>
-                </div>
-                <div class="product-detail">
+              <h3 class="product-name">snap2local</h3>
+              <p class="product-tagline">Buy and sell, right around the corner.</p>
+              <p class="muted">
+                A useful, easy way to buy and sell locally, with neighbors instead of strangers across the country.
+              </p>
+              <ul class="chips">
+                <li>Local</li>
+                <li>Buy and sell</li>
+              </ul>
+              <div class="card-foot">
+                <details>
+                  <summary><span>Learn more</span></summary>
                   <p class="muted">
-                    A useful, easy way to buy and sell locally, with neighbors instead of strangers across the country.
+                    Take a look at <a href="https://snap2local.com" rel="noopener">snap2local.com</a>.
                   </p>
-                  <details>
-                    <summary><span>Learn more</span></summary>
-                    <p class="muted">
-                      Take a look at <a href="https://snap2local.com" rel="noopener">snap2local.com</a>.
-                    </p>
-                  </details>
-                </div>
+                </details>
               </div>
-            </div>
-          </article>
-        </div>
+            </article>
+          </div>
 
-        <div class="vn-shell">
           <p class="closing-line reveal">More useful things are in the works.</p>
         </div>
       </section>
@@ -226,7 +226,7 @@
         <div class="vn-shell">
           <p class="section-index reveal"><span class="section-number">03</span> Collaborate</p>
 
-          <h2 class="section-title collaborate-heading reveal">Have something useful in mind?</h2>
+          <h2 class="section-title collaborate-heading reveal">Have something<br /><span class="accent">useful in mind?</span></h2>
           <p class="collaborate-intro reveal" style="--d: 1">
             Bring us an idea, a technical question or an opportunity to work together. Let's work through it.
           </p>
@@ -324,6 +324,6 @@
     </footer>
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    <script src="script.js?v=5" defer></script>
+    <script src="script.js?v=6" defer></script>
   </body>
 </html>

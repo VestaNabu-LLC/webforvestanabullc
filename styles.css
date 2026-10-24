@@ -81,8 +81,7 @@ h4 {
 
 /* Reading measure, per the 55-70ch standard. */
 .about-body p,
-.product-detail p,
-.product-prose p,
+.product-card p,
 .offer p,
 .hero-text {
   max-width: 64ch;
@@ -318,8 +317,11 @@ h4 {
 }
 
 .principles li {
-  padding-top: var(--vn-space-6);
+  padding: var(--vn-space-6);
+  border: 1px solid var(--vn-separator);
   border-top: 2px solid var(--vn-oxide);
+  border-radius: 0 0 var(--vn-radius) var(--vn-radius);
+  background: #ffffff;
 }
 
 .principles h3 {
@@ -332,6 +334,91 @@ h4 {
   color: var(--vn-muted);
 }
 
+/* ---- Shared card + chip language ---------------------------------------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 3px 11px;
+  border: 1px solid var(--vn-separator);
+  border-radius: 999px;
+  color: var(--vn-muted);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.chip-soon {
+  border-color: var(--vn-oxide);
+  color: var(--vn-oxide);
+}
+
+.chip-hero {
+  border-color: rgba(245, 241, 233, 0.45);
+  color: var(--vn-chalk);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vn-space-2);
+  margin: 0 0 var(--vn-space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 3px 11px;
+  border: 1px solid var(--vn-separator);
+  border-radius: 999px;
+  color: var(--vn-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Second clause of a heading carries the brand ink. */
+.accent {
+  color: var(--vn-oxide);
+}
+
+/* ---- Facts strip --------------------------------------------------------- */
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--vn-space-6);
+  margin: var(--vn-space-12) 0 0;
+  padding: var(--vn-space-6) 0 0;
+  border-top: 1px solid var(--vn-separator);
+  list-style: none;
+}
+
+.facts li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vn-space-1);
+}
+
+.fact-value {
+  color: var(--vn-ink);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.fact-label {
+  color: var(--vn-muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
 /* ---- Products ------------------------------------------------------------ */
 
 .projects-head {
@@ -339,55 +426,62 @@ h4 {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--vn-space-12);
   align-items: baseline;
-  margin-bottom: var(--vn-space-16);
+  margin-bottom: var(--vn-space-12);
 }
 
-/* Bands run full-bleed; the inner shell keeps content on the grid. */
-.product {
-  border-top: 1px solid var(--vn-separator);
-  transition: border-top-color 220ms ease;
+.projects-head h2 {
+  margin: 0;
 }
 
-.product:last-child {
-  border-bottom: 1px solid var(--vn-separator);
+.section-intro {
+  margin: 0;
+  color: var(--vn-muted);
 }
 
-.product:hover {
-  border-top-color: var(--vn-oxide);
-}
-
-.product-inner {
-  padding-block: clamp(40px, 5vw, 72px);
-}
-
-.product-head {
-  display: flex;
-  align-items: baseline;
+/* Feature spans the row; the other two sit beside each other. */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--vn-space-6);
+  align-items: stretch;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(24px, 2.6vw, 40px);
+  border: 1px solid var(--vn-separator);
+  border-radius: var(--vn-radius);
+  background: #ffffff;
+  transition: border-color 220ms ease, transform 220ms ease;
+}
+
+.product-card:hover {
+  border-color: var(--vn-oxide);
+  transform: translateY(-3px);
+}
+
+.product-card-feature {
+  grid-column: 1 / -1;
+  border-color: var(--vn-oxide);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: var(--vn-space-4);
   margin-bottom: var(--vn-space-6);
 }
 
 .product-index {
   /* Separator colour fails contrast at 1.55:1; these numerals carry meaning. */
   color: var(--vn-muted);
-  font-size: clamp(28px, 3vw, 44px);
+  font-size: clamp(24px, 2.4vw, 34px);
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
-}
-
-.product-label {
-  margin: 0;
-  color: var(--vn-muted);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: 0.02em;
-}
-
-.product-label-soon {
-  color: var(--vn-oxide);
 }
 
 .product-name {
@@ -395,74 +489,72 @@ h4 {
 }
 
 .product-tagline {
-  margin: 0;
+  margin: 0 0 var(--vn-space-4);
   color: var(--vn-oxide);
   font-size: clamp(18px, 1.5vw, 21px);
   font-weight: 500;
   line-height: 1.35;
 }
 
-/* Feature band: the forthcoming product carries the section's big moment. */
-.product-feature {
-  background: #ffffff;
-}
-
-.product-feature .product-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  column-gap: var(--vn-space-16);
-  align-items: start;
-}
-
-.product-feature .product-head,
-.product-feature .product-name {
-  grid-column: 1 / -1;
-}
-
-.product-feature .product-name {
-  font-size: clamp(24px, 2.2vw, 32px);
+.product-card-feature .product-name {
+  font-size: clamp(22px, 2vw, 28px);
   letter-spacing: -0.02em;
-  margin-bottom: var(--vn-space-6);
+  margin-bottom: var(--vn-space-4);
 }
 
 .product-statement {
-  grid-column: 1;
-  max-width: 11ch;
+  max-width: 14ch;
   margin: 0;
   color: var(--vn-oxide);
-  font-size: clamp(34px, 5vw, 72px);
+  font-size: clamp(32px, 4.4vw, 60px);
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.035em;
 }
 
-.product-feature .product-prose {
-  grid-column: 2;
-}
-
-/* Standard bands: narrow identity column, prose beside it. */
-.product-body {
+/* Feature card runs its statement and prose side by side. */
+.product-card-feature {
   display: grid;
-  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-  gap: var(--vn-space-6) var(--vn-space-16);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  column-gap: var(--vn-space-12);
   align-items: start;
 }
 
-.product-detail > p:last-of-type,
-.product-prose > p:last-of-type {
-  margin-bottom: 0;
+.product-card-feature .card-head,
+.product-card-feature .product-name {
+  grid-column: 1 / -1;
+}
+
+.product-card-feature .product-statement {
+  grid-column: 1;
+}
+
+.product-card-feature .card-body {
+  grid-column: 2;
+}
+
+.product-card .muted {
+  color: var(--vn-muted);
+}
+
+.card-foot {
+  margin-top: auto;
 }
 
 .nested-product {
-  margin-top: var(--vn-space-6);
+  margin-top: auto;
   padding: var(--vn-space-6);
   border-left: 2px solid var(--vn-oxide);
   border-radius: 0 var(--vn-radius) var(--vn-radius) 0;
   background: var(--vn-chalk);
 }
 
-.nested-product .product-label {
-  margin-bottom: var(--vn-space-2);
+.nested-label {
+  margin: 0 0 var(--vn-space-2);
+  color: var(--vn-muted);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .nested-product p:last-child {
@@ -470,7 +562,7 @@ h4 {
 }
 
 .closing-line {
-  margin: var(--vn-space-12) 0 0;
+  margin: var(--vn-space-16) 0 0;
   color: var(--vn-muted);
   font-size: clamp(18px, 1.6vw, 22px);
 }
@@ -554,6 +646,13 @@ details[open] > p {
 .collaborate-heading {
   margin: 0 0 var(--vn-space-6);
   max-width: 16ch;
+  /* Oxide is unreadable on ink (2.88:1), so the two-tone device inverts here:
+     the first clause dims and the accent takes the brightest value. */
+  color: var(--vn-separator);
+}
+
+.collaborate-heading .accent {
+  color: var(--vn-chalk);
 }
 
 .collaborate-intro {
@@ -573,8 +672,10 @@ details[open] > p {
 .offer {
   display: flex;
   flex-direction: column;
-  padding-top: var(--vn-space-6);
+  padding: var(--vn-space-6);
+  border: 1px solid rgba(245, 241, 233, 0.16);
   border-top: 2px solid var(--vn-oxide);
+  border-radius: 0 0 var(--vn-radius) var(--vn-radius);
 }
 
 .offer-label {
@@ -783,16 +884,14 @@ details[open] > p {
 }
 
 /* Prose links: underline thickens rather than appearing from nowhere. */
-.product-detail a,
-.product-prose a,
+.product-card a,
 details a {
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: text-decoration-thickness 150ms ease, color 150ms ease;
 }
 
-.product-detail a:hover,
-.product-prose a:hover,
+.product-card a:hover,
 details a:hover {
   text-decoration-thickness: 2px;
 }
@@ -906,22 +1005,27 @@ html:not(.js) .offer {
   .about-grid,
   .inquiry-grid,
   .projects-head,
-  .product-feature .product-inner,
-  .product-body {
+  .product-grid,
+  .product-card-feature {
     grid-template-columns: 1fr;
     gap: var(--vn-space-6);
   }
 
-  .product-feature .product-head,
-  .product-feature .product-name,
-  .product-statement,
-  .product-feature .product-prose {
+  .product-card-feature .card-head,
+  .product-card-feature .product-name,
+  .product-card-feature .product-statement,
+  .product-card-feature .card-body {
     grid-column: 1;
   }
 
   .product-statement {
-    max-width: 16ch;
+    max-width: 18ch;
     margin-bottom: var(--vn-space-6);
+  }
+
+  .facts {
+    grid-template-columns: 1fr;
+    gap: var(--vn-space-4);
   }
 
   .projects-head {
@@ -985,8 +1089,8 @@ html:not(.js) .offer {
     padding: var(--vn-space-4);
   }
 
-  .product-head {
-    gap: var(--vn-space-4);
+  .card-head {
+    gap: var(--vn-space-3);
   }
 }
 
