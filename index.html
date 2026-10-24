@@ -26,8 +26,9 @@
     <link rel="manifest" href="assets/brand/icons/site.webmanifest" />
     <link rel="preload" as="font" type="font/woff2" href="assets/brand/fonts/InstrumentSans-Variable.woff2" crossorigin />
     <link rel="stylesheet" href="assets/brand/tokens/brand.css" />
-    <!-- Versioned so a layout change can't be served against a 4h edge-cached stylesheet. Bump on CSS changes. -->
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <!-- Versioned so a layout change can't be served against a 4h edge-cached stylesheet.
+         Bump this AND the script.js version together on every CSS or JS change. -->
+    <link rel="stylesheet" href="styles.css?v=5" />
     <script>
       /* Set before first paint so reveal start-states never flash.
          Without JS the class is absent and all content stays visible. */
@@ -45,16 +46,18 @@
   <body class="vn-brand" id="top">
     <a class="skip-link" href="#main">Skip to content</a>
 
+    <div class="scroll-progress" aria-hidden="true"><span data-progress></span></div>
+
     <header class="site-header" data-header>
       <div class="vn-shell site-header-inner">
         <a class="site-logo" href="#top" aria-label="VestaNabu home">
           <img class="vn-logo" src="assets/brand/logos/svg/logo-horizontal-oxide.svg" alt="VestaNabu" width="377" height="108" />
         </a>
         <nav class="site-nav" aria-label="Main">
-          <a href="#projects"><span>Products</span></a>
-          <a href="#about"><span>Company</span></a>
-          <a href="#work-with-us"><span>Collaborate</span></a>
-          <a href="#inquiry"><span>Contact</span></a>
+          <a href="#projects" data-spy="projects"><span>Products</span></a>
+          <a href="#about" data-spy="about"><span>Company</span></a>
+          <a href="#work-with-us" data-spy="work-with-us"><span>Collaborate</span></a>
+          <a href="#inquiry" data-spy="contact"><span>Contact</span></a>
         </nav>
       </div>
     </header>
@@ -62,30 +65,35 @@
     <main id="main">
       <section class="hero vn-inverse">
         <div class="vn-shell hero-grid">
-          <p class="vn-label hero-eyebrow reveal" style="--d: 0">Independent product company</p>
-          <h1 class="vn-h1 reveal" style="--d: 1">
-            <span class="headline-line">Good ideas,</span> <span class="headline-line">seen through.</span>
-          </h1>
-          <div class="hero-aside reveal" style="--d: 2">
-            <p class="vn-lead">We create focused digital products and keep making them better.</p>
-            <p class="hero-text">
+          <div class="hero-copy">
+            <p class="vn-label hero-eyebrow reveal" style="--d: 0">Independent product company</p>
+            <h1 class="hero-title reveal" style="--d: 1">
+              <span class="headline-line">Good ideas,</span>
+              <span class="headline-line">seen through.</span>
+            </h1>
+            <p class="hero-lead reveal" style="--d: 2">We create focused digital products and keep making them better.</p>
+            <p class="hero-text reveal" style="--d: 3">
               From specialist software to everyday applications, we build around clear needs. We also work with others
               to shape, build and launch useful ideas.
             </p>
+            <div class="hero-actions reveal" style="--d: 4">
+              <a class="vn-button" href="#projects">Explore our work</a>
+              <a class="hero-link" href="#work-with-us"><span>Build with us</span></a>
+            </div>
           </div>
-          <div class="hero-actions reveal" style="--d: 3">
-            <a class="vn-button" href="#projects">Explore our work</a>
-            <a class="hero-link" href="#work-with-us"><span>Build with us</span></a>
+
+          <div class="hero-mark reveal" style="--d: 2" aria-hidden="true">
+            <img src="assets/brand/logos/svg/symbol-chalk.svg" alt="" width="465" height="380" />
           </div>
         </div>
       </section>
 
-      <section id="about" class="vn-section">
+      <section id="about" class="vn-section" data-section="about">
         <div class="vn-shell">
           <p class="section-index reveal"><span class="section-number">01</span> Company</p>
 
           <div class="about-grid">
-            <h2 class="vn-h2 reveal">Different ideas.<br />Shared commitment.</h2>
+            <h2 class="section-title reveal">Different ideas.<br />Shared commitment.</h2>
             <div class="about-body reveal" style="--d: 1">
               <p>
                 VestaNabu creates, owns and looks after products for different people and different needs. What connects
@@ -116,90 +124,109 @@
         </div>
       </section>
 
-      <section id="projects" class="vn-section projects">
+      <section id="projects" class="vn-section projects" data-section="projects">
         <div class="vn-shell">
           <p class="section-index reveal"><span class="section-number">02</span> Products</p>
 
           <div class="projects-head">
-            <h2 class="vn-h2 reveal">Our products</h2>
+            <h2 class="section-title reveal">Our products</h2>
             <p class="section-intro reveal" style="--d: 1">Focused products, each with a purpose and a character of its own.</p>
           </div>
+        </div>
 
-          <div class="product-list">
-            <article class="product product-feature reveal">
-              <p class="product-label product-label-soon">Coming soon</p>
+        <div class="product-list">
+          <article class="product product-feature reveal">
+            <div class="vn-shell product-inner">
+              <div class="product-head">
+                <span class="product-index">01</span>
+                <p class="product-label product-label-soon">Coming soon</p>
+              </div>
               <h3 class="product-name">VestaNabu</h3>
-              <div class="product-feature-body">
-                <p class="product-statement">Memories stay. Stories travel.</p>
-                <div class="product-feature-prose">
+              <p class="product-statement">Memories stay.<br />Stories travel.</p>
+              <div class="product-prose">
+                <p class="muted">
+                  Some moments were meant to stay put. Others deserve to be shared. A new home for both is on its way.
+                </p>
+                <details>
+                  <summary><span>Learn more</span></summary>
+                  <p class="muted">We are keeping the details close for now. Check back soon.</p>
+                </details>
+              </div>
+            </div>
+          </article>
+
+          <article class="product reveal">
+            <div class="vn-shell product-inner">
+              <div class="product-head">
+                <span class="product-index">02</span>
+                <p class="product-label">Software brand</p>
+              </div>
+              <div class="product-body">
+                <div class="product-identity">
+                  <h3 class="product-name">Monaidea</h3>
+                  <p class="product-tagline">Small and elegant solutions for niche areas.</p>
+                </div>
+                <div class="product-detail">
                   <p class="muted">
-                    Some moments were meant to stay put. Others deserve to be shared. A new home for both is on its way.
+                    Our software brand for focused tools. Visit
+                    <a href="https://monaidea.com" rel="noopener">monaidea.com</a>.
+                  </p>
+
+                  <div class="nested-product">
+                    <p class="product-label">Inside Monaidea</p>
+                    <h4>Ledgerstone for Jira</h4>
+                    <p class="muted">A read-only permission audit for Jira Cloud administrators. Free for up to 10 users.</p>
+                    <details>
+                      <summary><span>Learn more</span></summary>
+                      <p class="muted">
+                        See how open your Jira really is: permission schemes, shared filters and dashboards, roles,
+                        groups and accounts, with a weekly trend. Find it on the
+                        <a href="https://ledgerstone.monaidea.com/" rel="noopener">Ledgerstone site</a>.
+                      </p>
+                    </details>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="product reveal">
+            <div class="vn-shell product-inner">
+              <div class="product-head">
+                <span class="product-index">03</span>
+                <p class="product-label">Local marketplace</p>
+              </div>
+              <div class="product-body">
+                <div class="product-identity">
+                  <h3 class="product-name">snap2local</h3>
+                  <p class="product-tagline">Buy and sell, right around the corner.</p>
+                </div>
+                <div class="product-detail">
+                  <p class="muted">
+                    A useful, easy way to buy and sell locally, with neighbors instead of strangers across the country.
                   </p>
                   <details>
                     <summary><span>Learn more</span></summary>
-                    <p class="muted">We are keeping the details close for now. Check back soon.</p>
-                  </details>
-                </div>
-              </div>
-            </article>
-
-            <article class="product reveal">
-              <div class="product-identity">
-                <p class="product-label">Software brand</p>
-                <h3 class="product-name">Monaidea</h3>
-                <p class="product-tagline">Small and elegant solutions for niche areas.</p>
-              </div>
-              <div class="product-detail">
-                <p class="muted">
-                  Our software brand for focused tools. Visit
-                  <a href="https://monaidea.com" rel="noopener">monaidea.com</a>.
-                </p>
-
-                <div class="nested-product">
-                  <p class="product-label">Inside Monaidea</p>
-                  <h4>Ledgerstone for Jira</h4>
-                  <p class="muted">A read-only permission audit for Jira Cloud administrators. Free for up to 10 users.</p>
-                  <details>
-                    <summary><span>Learn more</span></summary>
                     <p class="muted">
-                      See how open your Jira really is: permission schemes, shared filters and dashboards, roles, groups
-                      and accounts, with a weekly trend. Find it on the
-                      <a href="https://ledgerstone.monaidea.com/" rel="noopener">Ledgerstone site</a>.
+                      Take a look at <a href="https://snap2local.com" rel="noopener">snap2local.com</a>.
                     </p>
                   </details>
                 </div>
               </div>
-            </article>
+            </div>
+          </article>
+        </div>
 
-            <article class="product reveal">
-              <div class="product-identity">
-                <p class="product-label">Local marketplace</p>
-                <h3 class="product-name">snap2local</h3>
-                <p class="product-tagline">Buy and sell, right around the corner.</p>
-              </div>
-              <div class="product-detail">
-                <p class="muted">
-                  A useful, easy way to buy and sell locally, with neighbors instead of strangers across the country.
-                </p>
-                <details>
-                  <summary><span>Learn more</span></summary>
-                  <p class="muted">
-                    Take a look at <a href="https://snap2local.com" rel="noopener">snap2local.com</a>.
-                  </p>
-                </details>
-              </div>
-            </article>
-          </div>
-
+        <div class="vn-shell">
           <p class="closing-line reveal">More useful things are in the works.</p>
         </div>
       </section>
 
-      <section id="work-with-us" class="vn-section collaborate">
+      <section id="work-with-us" class="vn-section collaborate" data-section="work-with-us">
         <div class="vn-shell">
           <p class="section-index reveal"><span class="section-number">03</span> Collaborate</p>
 
-          <h2 class="vn-h2 collaborate-heading reveal">Have something useful in mind?</h2>
+          <h2 class="section-title collaborate-heading reveal">Have something useful in mind?</h2>
           <p class="collaborate-intro reveal" style="--d: 1">
             Bring us an idea, a technical question or an opportunity to work together. Let's work through it.
           </p>
@@ -231,11 +258,11 @@
         </div>
       </section>
 
-      <section class="vn-section inquiry">
+      <section class="vn-section inquiry" data-section="contact">
         <div class="vn-shell inquiry-grid">
           <div class="inquiry-intro">
             <p class="section-index reveal"><span class="section-number">04</span> Contact</p>
-            <h2 class="vn-h2 reveal">Tell us what you have in mind.</h2>
+            <h2 class="section-title reveal">Tell us what you have in mind.</h2>
           </div>
 
           <form id="inquiry" class="inquiry-form reveal" style="--d: 1" action="#" method="post" novalidate>
@@ -297,6 +324,6 @@
     </footer>
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    <script src="script.js?v=4" defer></script>
+    <script src="script.js?v=5" defer></script>
   </body>
 </html>

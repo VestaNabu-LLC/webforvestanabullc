@@ -1,10 +1,14 @@
-/* Page layout for the VestaNabu company site.
-   Palette, type scale and the shared button/input/section classes come from
+/* VestaNabu company site.
+   Palette, font and the shared button/input/shell classes come from
    assets/brand/tokens/brand.css (.vn-brand).
 
-   Colour rule that shapes this file: oxide fails contrast as text on ink
-   (2.88:1) and muted fails too (2.74:1). So the ink section uses chalk for
-   headings, separator for body copy, and oxide only for decorative rules. */
+   Two rules shape this file:
+   1. Oxide fails contrast as text on ink (2.88:1) and muted fails (2.74:1).
+      So the ink sections use chalk for headings, separator for body copy, and
+      oxide only as decorative rules.
+   2. Type runs larger than the brand guide's table. That is a deliberate
+      departure for presence; proportions, weights and tracking still follow
+      the system. */
 
 html {
   scroll-behavior: smooth;
@@ -20,21 +24,6 @@ p {
   margin: 0 0 var(--vn-space-4);
 }
 
-h3 {
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.22;
-  letter-spacing: -0.015em;
-  margin: 0 0 var(--vn-space-3);
-}
-
-h4 {
-  font-size: 19px;
-  font-weight: 500;
-  line-height: 1.3;
-  margin: 0 0 var(--vn-space-2);
-}
-
 a {
   color: var(--vn-oxide);
 }
@@ -47,13 +36,75 @@ a:hover {
   color: var(--vn-muted);
 }
 
+img {
+  max-width: 100%;
+}
+
+/* ---- Type scale ---------------------------------------------------------- */
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(46px, 7.4vw, 104px);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.section-title {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 62px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.hero-lead {
+  font-size: clamp(20px, 2.1vw, 27px);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(20px, 1.6vw, 24px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--vn-space-3);
+}
+
+h4 {
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 var(--vn-space-2);
+}
+
 /* Reading measure, per the 55-70ch standard. */
 .about-body p,
 .product-detail p,
-.product-feature-body p,
+.product-prose p,
 .offer p,
 .hero-text {
   max-width: 64ch;
+}
+
+/* ---- Chrome -------------------------------------------------------------- */
+
+/* Scroll progress: a hairline of oxide across the very top. */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 30;
+  height: 3px;
+  pointer-events: none;
+}
+
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  background: var(--vn-oxide);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left center;
 }
 
 /* Anchor targets clear the sticky header. */
@@ -65,12 +116,11 @@ a:hover {
   scroll-margin-top: 104px;
 }
 
-/* Skip link: hidden until it receives keyboard focus */
 .skip-link {
   position: absolute;
   top: var(--vn-space-2);
   left: var(--vn-space-2);
-  z-index: 20;
+  z-index: 40;
   padding: var(--vn-space-3) var(--vn-space-4);
   background: var(--vn-ink);
   color: var(--vn-chalk);
@@ -82,7 +132,137 @@ a:hover {
   transform: translateY(0);
 }
 
-/* Section index: the numbered device from the brand guide. */
+/* Header: solid chalk, never translucent, so the oxide hero cannot bleed
+   through behind the mark. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding-block: var(--vn-space-6);
+  background: var(--vn-chalk);
+  border-bottom: 1px solid transparent;
+  transition: padding-block 200ms ease, border-color 200ms ease;
+}
+
+.site-header.is-stuck {
+  padding-block: var(--vn-space-3);
+  border-bottom-color: var(--vn-separator);
+}
+
+.site-header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vn-space-4) var(--vn-space-8);
+}
+
+.site-logo {
+  display: inline-flex;
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+
+.site-logo:hover {
+  opacity: 0.78;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vn-space-1) var(--vn-space-6);
+}
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  color: var(--vn-ink);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.site-nav a:hover,
+.site-nav a.is-current {
+  color: var(--vn-oxide);
+}
+
+/* ---- Hero ---------------------------------------------------------------- */
+
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - 104px);
+  padding-block: clamp(32px, 4vw, 64px);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  align-items: center;
+  column-gap: var(--vn-space-16);
+  width: 100%;
+}
+
+.hero-eyebrow {
+  margin: 0 0 var(--vn-space-6);
+}
+
+.hero-title {
+  margin-bottom: var(--vn-space-6);
+}
+
+.headline-line {
+  display: block;
+}
+
+.hero-lead {
+  max-width: 26ch;
+  margin-bottom: var(--vn-space-4);
+}
+
+.hero-text {
+  margin-bottom: var(--vn-space-8);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vn-space-6);
+}
+
+/* The symbol used at architectural scale: one deliberate instance, whole and
+   uncropped, never animated. Decorative here, so it carries empty alt text. */
+.hero-mark {
+  justify-self: end;
+}
+
+.hero-mark img {
+  display: block;
+  width: 100%;
+  max-height: 54svh;
+  height: auto;
+  object-fit: contain;
+}
+
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  color: var(--vn-chalk);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.hero-link:hover {
+  color: #ffffff;
+}
+
+/* ---- Section furniture --------------------------------------------------- */
+
 .section-index {
   display: flex;
   align-items: center;
@@ -106,129 +286,16 @@ a:hover {
   font-variant-numeric: tabular-nums;
 }
 
-/* Header: stays available while reading. Solid chalk, never translucent,
-   so the oxide hero can't bleed through behind the mark. */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  padding-block: var(--vn-space-6);
-  background: var(--vn-chalk);
-  border-bottom: 1px solid transparent;
-  transition: padding-block 200ms ease, border-color 200ms ease;
-}
-
-.site-header.is-stuck {
-  padding-block: var(--vn-space-3);
-  border-bottom-color: var(--vn-separator);
-}
-
-.site-header-inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--vn-space-4) var(--vn-space-8);
-}
-
-.site-logo {
-  display: inline-flex;
-  text-decoration: none;
-}
-
-.site-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--vn-space-1) var(--vn-space-6);
-}
-
-.site-nav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 48px;
-  color: var(--vn-ink);
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 150ms ease;
-}
-
-.site-nav a:hover {
-  color: var(--vn-oxide);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-/* Hero: oxide field, chalk text. Two columns so the field carries content
-   across its full width instead of leaving the right side empty. */
-.hero {
-  padding-block: clamp(64px, 8vw, 112px);
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  column-gap: var(--vn-space-16);
-  align-items: start;
-}
-
-.hero-eyebrow {
-  grid-column: 1 / -1;
-  margin: 0 0 var(--vn-space-8);
-}
-
-.hero h1 {
-  grid-column: 1;
+.section-intro {
   margin: 0;
+  color: var(--vn-muted);
 }
 
-.headline-line {
-  display: block;
-}
+/* ---- Company ------------------------------------------------------------- */
 
-.hero-aside {
-  grid-column: 2;
-  padding-top: var(--vn-space-2);
-}
-
-.hero-aside .vn-lead {
-  margin-bottom: var(--vn-space-6);
-}
-
-.hero-text {
-  margin: 0;
-}
-
-.hero-actions {
-  grid-column: 1;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--vn-space-6);
-  margin-top: var(--vn-space-12);
-}
-
-.vn-button {
-  box-sizing: border-box;
-}
-
-.hero-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 48px;
-  color: var(--vn-chalk);
-  font-weight: 600;
-  text-underline-offset: 4px;
-  transition: color 150ms ease;
-}
-
-.hero-link:hover {
-  color: #ffffff;
-}
-
-/* Company */
 .about-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--vn-space-12);
   align-items: start;
 }
@@ -265,7 +332,8 @@ a:hover {
   color: var(--vn-muted);
 }
 
-/* Products */
+/* ---- Products ------------------------------------------------------------ */
+
 .projects-head {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -274,29 +342,43 @@ a:hover {
   margin-bottom: var(--vn-space-16);
 }
 
-.projects-head h2 {
-  margin: 0;
-}
-
-.section-intro {
-  margin: 0;
-  color: var(--vn-muted);
-}
-
-.product-list {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid var(--vn-separator);
-}
-
+/* Bands run full-bleed; the inner shell keeps content on the grid. */
 .product {
-  padding-block: var(--vn-space-12);
+  border-top: 1px solid var(--vn-separator);
+  transition: border-top-color 220ms ease;
+}
+
+.product:last-child {
   border-bottom: 1px solid var(--vn-separator);
 }
 
-/* Labels are plain type, not pills: the guide reserves the pill for the CTA. */
+.product:hover {
+  border-top-color: var(--vn-oxide);
+}
+
+.product-inner {
+  padding-block: clamp(40px, 5vw, 72px);
+}
+
+.product-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--vn-space-6);
+  margin-bottom: var(--vn-space-6);
+}
+
+.product-index {
+  /* Separator colour fails contrast at 1.55:1; these numerals carry meaning. */
+  color: var(--vn-muted);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
 .product-label {
-  margin: 0 0 var(--vn-space-4);
+  margin: 0;
   color: var(--vn-muted);
   font-size: 14px;
   font-weight: 500;
@@ -312,55 +394,62 @@ a:hover {
   margin: 0 0 var(--vn-space-2);
 }
 
-/* Feature row: the forthcoming product carries the section's one big moment. */
-.product-feature .product-name {
-  font-size: clamp(26px, 3vw, 34px);
-  letter-spacing: -0.02em;
-  margin-bottom: var(--vn-space-4);
-}
-
-.product-statement {
-  max-width: 14ch;
-  margin: 0;
-  color: var(--vn-oxide);
-  font-size: clamp(28px, 3.6vw, 44px);
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-}
-
-.product-feature-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--vn-space-12);
-  align-items: start;
-}
-
-.product-feature-prose p:last-of-type {
-  margin-bottom: 0;
-}
-
-/* Standard rows: narrow identity column, prose column beside it. */
-.product-identity,
-.product-detail {
-  display: block;
-}
-
-.product:not(.product-feature) {
-  display: grid;
-  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-  gap: var(--vn-space-6) var(--vn-space-16);
-}
-
 .product-tagline {
   margin: 0;
   color: var(--vn-oxide);
-  font-size: 19px;
+  font-size: clamp(18px, 1.5vw, 21px);
   font-weight: 500;
   line-height: 1.35;
 }
 
-.product-detail > p:last-of-type {
+/* Feature band: the forthcoming product carries the section's big moment. */
+.product-feature {
+  background: #ffffff;
+}
+
+.product-feature .product-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  column-gap: var(--vn-space-16);
+  align-items: start;
+}
+
+.product-feature .product-head,
+.product-feature .product-name {
+  grid-column: 1 / -1;
+}
+
+.product-feature .product-name {
+  font-size: clamp(24px, 2.2vw, 32px);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--vn-space-6);
+}
+
+.product-statement {
+  grid-column: 1;
+  max-width: 11ch;
+  margin: 0;
+  color: var(--vn-oxide);
+  font-size: clamp(34px, 5vw, 72px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.product-feature .product-prose {
+  grid-column: 2;
+}
+
+/* Standard bands: narrow identity column, prose beside it. */
+.product-body {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: var(--vn-space-6) var(--vn-space-16);
+  align-items: start;
+}
+
+.product-detail > p:last-of-type,
+.product-prose > p:last-of-type {
   margin-bottom: 0;
 }
 
@@ -369,7 +458,7 @@ a:hover {
   padding: var(--vn-space-6);
   border-left: 2px solid var(--vn-oxide);
   border-radius: 0 var(--vn-radius) var(--vn-radius) 0;
-  background: #ffffff;
+  background: var(--vn-chalk);
 }
 
 .nested-product .product-label {
@@ -380,37 +469,75 @@ a:hover {
   margin-bottom: 0;
 }
 
-details {
-  margin-top: var(--vn-space-4);
+.closing-line {
+  margin: var(--vn-space-12) 0 0;
+  color: var(--vn-muted);
+  font-size: clamp(18px, 1.6vw, 22px);
 }
 
-/* brand.css focus rule omits summary; keep the same visible ring. */
-details summary:focus-visible {
-  outline: 3px solid currentColor;
-  outline-offset: 4px;
+/* ---- Disclosure ---------------------------------------------------------- */
+
+details {
+  margin-top: var(--vn-space-4);
 }
 
 details summary {
   display: inline-flex;
   align-items: center;
+  gap: var(--vn-space-2);
   min-height: 48px;
   color: var(--vn-oxide);
   font-weight: 600;
   cursor: pointer;
+  list-style: none;
+  transition: color 150ms ease;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-bottom: 3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+details[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+details summary:hover {
+  color: var(--vn-hover);
+}
+
+details summary:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
 }
 
 details p {
   margin-top: var(--vn-space-2);
 }
 
-.closing-line {
-  margin: var(--vn-space-8) 0 0;
-  color: var(--vn-muted);
-  font-size: 20px;
+details[open] > p {
+  animation: vn-disclose 300ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
-/* Collaborate: the page's single dark act.
-   Oxide is unreadable as text here, so it appears only as rules. */
+@keyframes vn-disclose {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* ---- Collaborate: the page's dark act ------------------------------------ */
+
 .collaborate {
   background: var(--vn-ink);
   color: var(--vn-chalk);
@@ -426,15 +553,15 @@ details p {
 
 .collaborate-heading {
   margin: 0 0 var(--vn-space-6);
-  max-width: 18ch;
+  max-width: 16ch;
 }
 
 .collaborate-intro {
-  max-width: 60ch;
+  max-width: 56ch;
   margin: 0 0 var(--vn-space-16);
   color: var(--vn-separator);
-  font-size: clamp(20px, 2.1vw, 26px);
-  line-height: 1.45;
+  font-size: clamp(20px, 2.1vw, 27px);
+  line-height: 1.4;
 }
 
 .offers {
@@ -474,7 +601,7 @@ details p {
   min-height: 48px;
   color: var(--vn-chalk);
   font-weight: 600;
-  text-underline-offset: 4px;
+  text-decoration: none;
   transition: color 150ms ease;
 }
 
@@ -482,16 +609,17 @@ details p {
   color: #ffffff;
 }
 
-/* Contact */
+/* ---- Contact ------------------------------------------------------------- */
+
+.inquiry {
+  border-top: 1px solid var(--vn-separator);
+}
+
 .inquiry-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   gap: var(--vn-space-12);
   align-items: start;
-}
-
-.inquiry-intro .vn-h2 {
-  margin: 0;
 }
 
 .inquiry-form {
@@ -518,6 +646,14 @@ details p {
   resize: vertical;
 }
 
+.vn-input {
+  transition: border-color 150ms ease;
+}
+
+.vn-input:hover {
+  border-color: var(--vn-ink);
+}
+
 .hp-field {
   position: absolute;
   left: -10000px;
@@ -537,6 +673,8 @@ details p {
   cursor: wait;
 }
 
+/* The submit status is deliberately NOT animated. It must be readable the
+   instant it is set; an entrance animation risked leaving it at opacity 0. */
 .form-status {
   min-height: 1.5em;
   margin: 0;
@@ -545,13 +683,13 @@ details p {
   color: var(--vn-ink);
 }
 
-/* Status is carried by text, never colour alone. */
 .form-status[data-state="error"]::before {
   content: "Error: ";
   color: var(--vn-oxide);
 }
 
-/* Footer: ink field, reversed mark. */
+/* ---- Footer -------------------------------------------------------------- */
+
 .site-footer {
   padding-top: var(--vn-space-16);
   background: var(--vn-ink);
@@ -568,7 +706,7 @@ details p {
 
 .footer-logo {
   display: block;
-  width: clamp(152px, 18vw, 208px);
+  width: clamp(152px, 20vw, 240px);
   height: auto;
 }
 
@@ -584,7 +722,7 @@ details p {
 .footer-details a {
   color: var(--vn-chalk);
   font-weight: 600;
-  text-underline-offset: 4px;
+  text-decoration: none;
 }
 
 .footer-details a:hover {
@@ -610,132 +748,19 @@ details p {
   font-size: 15px;
 }
 
-/* Tablet */
-@media (max-width: 1024px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero h1,
-  .hero-aside,
-  .hero-actions {
-    grid-column: 1;
-  }
-
-  .hero-aside {
-    padding-top: var(--vn-space-8);
-  }
-
-  .hero-actions {
-    margin-top: var(--vn-space-8);
-  }
-
-  .about-grid,
-  .inquiry-grid,
-  .projects-head,
-  .product-feature-body {
-    grid-template-columns: 1fr;
-    gap: var(--vn-space-6);
-  }
-
-  .projects-head {
-    margin-bottom: var(--vn-space-12);
-  }
-
-  .inquiry-grid {
-    gap: var(--vn-space-8);
-  }
-
-  .principles,
-  .offers {
-    grid-template-columns: 1fr;
-    gap: var(--vn-space-8);
-  }
-
-  .product-statement {
-    max-width: 24ch;
-  }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  /* The header wraps to two rows here; sticking it would eat the viewport. */
-  .site-header {
-    position: static;
-  }
-
-  #main,
-  #about,
-  #projects,
-  #work-with-us,
-  .inquiry-form {
-    scroll-margin-top: var(--vn-space-4);
-  }
-
-  .section-index {
-    margin-bottom: var(--vn-space-8);
-  }
-
-  .product:not(.product-feature) {
-    grid-template-columns: 1fr;
-    gap: var(--vn-space-4);
-  }
-
-  .product {
-    padding-block: var(--vn-space-8);
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .form-submit {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .site-header {
-    padding-block: var(--vn-space-4);
-  }
-
-  .site-nav {
-    gap: var(--vn-space-1) var(--vn-space-4);
-  }
-
-  .hero-actions {
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .hero-actions .vn-button {
-    width: 100%;
-  }
-
-  .nested-product {
-    padding: var(--vn-space-4);
-  }
-}
-
-/* ---------------------------------------------------------------------------
-   Motion and interaction
-
-   The brand guide allows ~150ms colour/opacity transitions. Entrance reveals
-   go beyond that, deliberately, to give the page life. They stay within the
-   spirit of the rules: no moving logo, no wave or pulse, no scroll-dependent
-   reading, and nothing decorative in motion. Content is fully legible at rest.
-
-   Reveals are opt-in via the .js class, so with JavaScript disabled, or if the
-   observer never runs, every element renders visible.
+/* ---- Motion and interaction ----------------------------------------------
+   Entrance reveals go beyond the guide's ~150ms transition note, deliberately.
+   Nothing decorative moves, the mark never animates, and no reading depends on
+   scroll position. Reveals are opt-in via the .js class, so without JavaScript
+   every element renders visible.
 --------------------------------------------------------------------------- */
 
 .js .reveal {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(18px);
   transition:
-    opacity 620ms cubic-bezier(0.22, 0.61, 0.36, 1),
-    transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    opacity 640ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 640ms cubic-bezier(0.22, 0.61, 0.36, 1);
   transition-delay: calc(var(--d, 0) * 80ms);
   will-change: opacity, transform;
 }
@@ -746,7 +771,6 @@ details p {
   will-change: auto;
 }
 
-/* Selection carries the brand rather than the browser default. */
 ::selection {
   background: var(--vn-oxide);
   color: var(--vn-chalk);
@@ -758,9 +782,9 @@ details p {
   color: var(--vn-ink);
 }
 
-/* Links: underline thickens on hover instead of appearing from nowhere. */
+/* Prose links: underline thickens rather than appearing from nowhere. */
 .product-detail a,
-.product-feature-prose a,
+.product-prose a,
 details a {
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -768,12 +792,12 @@ details a {
 }
 
 .product-detail a:hover,
-.product-feature-prose a:hover,
+.product-prose a:hover,
 details a:hover {
   text-decoration-thickness: 2px;
 }
 
-/* Nav, hero and offer links share one underline that wipes in from the left. */
+/* Nav, hero, offer and footer links share one underline that wipes in. */
 .site-nav a > span,
 .hero-link > span,
 .offer-link > span,
@@ -799,34 +823,15 @@ details a:hover {
 }
 
 .site-nav a:hover > span::after,
+.site-nav a.is-current > span::after,
 .hero-link:hover > span::after,
 .offer-link:hover > span::after,
 .footer-details a:hover > span::after {
   transform: scaleX(1);
 }
 
-/* These links carry their own underline, so drop the native one. */
-.hero-link,
-.offer-link,
-.footer-details a {
-  text-decoration: none;
-}
-
-.site-nav a:hover {
-  text-decoration: none;
-}
-
-/* Logo responds to the pointer without ever animating the mark itself. */
-.site-logo {
-  transition: opacity 150ms ease;
-}
-
-.site-logo:hover {
-  opacity: 0.78;
-}
-
-/* Button lifts slightly. Flat colour throughout, no shadow. */
 .vn-button {
+  box-sizing: border-box;
   transition: background-color 150ms ease, transform 150ms ease;
 }
 
@@ -836,60 +841,6 @@ details a:hover {
 
 .vn-button:active {
   transform: translateY(0);
-}
-
-/* Disclosure: native marker replaced with a chevron that turns on open. */
-details summary {
-  list-style: none;
-  gap: var(--vn-space-2);
-  transition: color 150ms ease;
-}
-
-details summary::-webkit-details-marker {
-  display: none;
-}
-
-details summary::after {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  margin-bottom: 3px;
-  transform: rotate(45deg);
-  transition: transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-details[open] summary::after {
-  transform: rotate(-135deg);
-}
-
-details summary:hover {
-  color: var(--vn-hover);
-}
-
-details[open] > p {
-  animation: vn-disclose 300ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
-}
-
-@keyframes vn-disclose {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-}
-
-/* Product rows: a quiet oxide rule follows the pointer down the list. */
-.product {
-  transition: border-bottom-color 220ms ease;
-}
-
-.product:hover {
-  border-bottom-color: var(--vn-oxide);
-}
-
-.product-name {
-  transition: color 150ms ease;
 }
 
 /* Principle and offer rules draw themselves in with the reveal. */
@@ -912,28 +863,138 @@ html:not(.js) .offer {
   background-size: 100% 2px;
 }
 
-/* Form controls: border and ring settle rather than snap. */
-.vn-input {
-  transition: border-color 150ms ease, background-color 150ms ease;
+/* ---- Responsive ---------------------------------------------------------- */
+
+/* Short laptop screens: scale the hero down so the call to action stays on
+   the first screen rather than sitting just past the fold. */
+@media (min-width: 1025px) and (max-height: 860px) {
+  .hero {
+    padding-block: clamp(24px, 3vw, 40px);
+  }
+
+  .hero-title {
+    font-size: clamp(40px, 5.6vw, 76px);
+  }
+
+  .hero-lead {
+    font-size: clamp(19px, 1.7vw, 22px);
+  }
+
+  .hero-text {
+    margin-bottom: var(--vn-space-6);
+  }
+
+  .hero-mark img {
+    max-height: 42svh;
+  }
 }
 
-.vn-input:hover {
-  border-color: var(--vn-ink);
+@media (max-width: 1024px) {
+  .hero {
+    min-height: 0;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Decorative at this size, and the hero reads better without it. */
+  .hero-mark {
+    display: none;
+  }
+
+  .about-grid,
+  .inquiry-grid,
+  .projects-head,
+  .product-feature .product-inner,
+  .product-body {
+    grid-template-columns: 1fr;
+    gap: var(--vn-space-6);
+  }
+
+  .product-feature .product-head,
+  .product-feature .product-name,
+  .product-statement,
+  .product-feature .product-prose {
+    grid-column: 1;
+  }
+
+  .product-statement {
+    max-width: 16ch;
+    margin-bottom: var(--vn-space-6);
+  }
+
+  .projects-head {
+    margin-bottom: var(--vn-space-12);
+  }
+
+  .inquiry-grid {
+    gap: var(--vn-space-8);
+  }
+
+  .principles,
+  .offers {
+    grid-template-columns: 1fr;
+    gap: var(--vn-space-8);
+  }
 }
 
-.form-submit {
-  transition: background-color 150ms ease, transform 150ms ease;
+@media (max-width: 768px) {
+  /* The header wraps to two rows here; sticking it would eat the viewport. */
+  .site-header {
+    position: static;
+  }
+
+  #main,
+  #about,
+  #projects,
+  #work-with-us,
+  .inquiry-form {
+    scroll-margin-top: var(--vn-space-4);
+  }
+
+  .section-index {
+    margin-bottom: var(--vn-space-8);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-submit {
+    width: 100%;
+  }
 }
 
-/* The submit status is deliberately NOT animated. It must be readable the
-   instant it is set; an entrance animation risked leaving it at opacity 0. */
+@media (max-width: 480px) {
+  .site-nav {
+    gap: var(--vn-space-1) var(--vn-space-4);
+  }
+
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .vn-button {
+    width: 100%;
+  }
+
+  .nested-product {
+    padding: var(--vn-space-4);
+  }
+
+  .product-head {
+    gap: var(--vn-space-4);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  /* Everything arrives at its end state immediately. */
   .js .reveal,
   .js .reveal.is-visible {
     opacity: 1;
@@ -950,10 +1011,7 @@ html:not(.js) .offer {
   .site-nav a > span::after,
   .hero-link > span::after,
   .offer-link > span::after,
-  .footer-details a > span::after {
-    transition: none;
-  }
-
+  .footer-details a > span::after,
   details summary::after,
   details[open] > p,
   .vn-button,
