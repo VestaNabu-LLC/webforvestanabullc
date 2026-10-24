@@ -32,6 +32,14 @@
       /* Set before first paint so reveal start-states never flash.
          Without JS the class is absent and all content stays visible. */
       document.documentElement.classList.add("js");
+
+      /* Failsafe: the .js class hides reveal content until script.js reveals
+         it, so a script that is stale, blocked or broken could strand the page
+         invisible. If script.js has not signalled shortly after load, drop the
+         class and show everything. */
+      window.setTimeout(function () {
+        if (!window.__vnMotion) document.documentElement.classList.remove("js");
+      }, 1500);
     </script>
   </head>
   <body class="vn-brand" id="top">
@@ -289,6 +297,6 @@
     </footer>
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    <script src="script.js" defer></script>
+    <script src="script.js?v=4" defer></script>
   </body>
 </html>

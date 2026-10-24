@@ -1,6 +1,9 @@
 // Entrance reveals and header state. Kept in its own block so a failure here
 // can never stop the contact form from working, or the reverse.
 (function motion() {
+  // Signals the head failsafe that motion is in control.
+  window.__vnMotion = true;
+
   const reveals = document.querySelectorAll(".reveal");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
