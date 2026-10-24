@@ -25,7 +25,8 @@
     <link rel="apple-touch-icon" href="assets/brand/icons/apple-touch-icon.png" />
     <link rel="manifest" href="assets/brand/icons/site.webmanifest" />
     <link rel="stylesheet" href="assets/brand/tokens/brand.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <!-- Versioned so a layout change can't be served against a 4h edge-cached stylesheet. Bump on CSS changes. -->
+    <link rel="stylesheet" href="styles.css?v=2" />
   </head>
   <body class="vn-brand" id="top">
     <a class="skip-link" href="#main">Skip to content</a>
