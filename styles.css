@@ -177,44 +177,37 @@ a:hover {
   border-top: 1px solid var(--vn-separator);
 }
 
+/* Identity column stays narrow so the prose column carries the row. */
 .product {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: var(--vn-space-4) var(--vn-space-12);
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: var(--vn-space-6) var(--vn-space-16);
   padding-block: var(--vn-space-12);
   border-bottom: 1px solid var(--vn-separator);
 }
 
-.product-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--vn-space-3);
-  grid-column: 1 / -1;
+.product-identity .pill {
+  margin-bottom: var(--vn-space-4);
 }
 
-.product h3,
-.product-tagline {
-  grid-column: 1;
+.product-identity h3 {
+  margin-bottom: var(--vn-space-2);
 }
 
 .product-tagline {
   color: var(--vn-oxide);
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 500;
+  line-height: 1.35;
   margin: 0;
 }
 
-.product > p,
-.product details,
-.nested-product {
-  grid-column: 2;
+.product-detail p {
+  max-width: 64ch;
 }
 
-.product-category {
-  color: var(--vn-muted);
-  font-size: 14px;
-  font-weight: 500;
+.product-detail > p:last-of-type {
+  margin-bottom: 0;
 }
 
 .pill {
@@ -246,6 +239,12 @@ details {
   margin-top: var(--vn-space-4);
 }
 
+/* brand.css focus rule omits summary; keep the same visible ring. */
+details summary:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+}
+
 details summary {
   display: inline-flex;
   align-items: center;
@@ -260,16 +259,12 @@ details p {
 }
 
 .closing-line {
-  margin: var(--vn-space-12) 0 0;
+  margin: var(--vn-space-8) 0 0;
   color: var(--vn-muted);
   font-size: 20px;
 }
 
 /* Collaborate */
-.collaborate {
-  background: #FFFFFF;
-}
-
 .collaborate .section-intro {
   margin-bottom: var(--vn-space-12);
 }
@@ -304,14 +299,20 @@ details p {
   text-underline-offset: 4px;
 }
 
-/* Inquiry form */
-.inquiry-inner {
-  max-width: 760px;
-  scroll-margin-top: var(--vn-space-8);
+/* Inquiry form: left-aligned in the shell, like every other section. */
+.inquiry {
+  border-top: 1px solid var(--vn-separator);
 }
 
-.inquiry-inner > h2 {
-  margin-bottom: var(--vn-space-8);
+.inquiry-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: var(--vn-space-12);
+  align-items: start;
+}
+
+.inquiry-grid > h2 {
+  margin: 0;
 }
 
 .inquiry-form {
@@ -381,7 +382,9 @@ details p {
 
 /* Footer (ink field, chalk logo) */
 .site-footer {
-  padding-block: var(--vn-space-12) var(--vn-space-16);
+  padding-block: var(--vn-space-16);
+  background: var(--vn-ink);
+  color: var(--vn-chalk);
 }
 
 .footer-inner {
@@ -432,9 +435,14 @@ details p {
     padding-top: var(--vn-space-6);
   }
 
-  .about-grid {
+  .about-grid,
+  .inquiry-grid {
     grid-template-columns: 1fr;
     gap: var(--vn-space-6);
+  }
+
+  .inquiry-grid {
+    gap: var(--vn-space-8);
   }
 }
 
@@ -442,16 +450,8 @@ details p {
 @media (max-width: 768px) {
   .product {
     grid-template-columns: 1fr;
-    gap: var(--vn-space-3);
+    gap: var(--vn-space-4);
     padding-block: var(--vn-space-8);
-  }
-
-  .product h3,
-  .product-tagline,
-  .product > p,
-  .product details,
-  .nested-product {
-    grid-column: 1;
   }
 
   .form-row {
