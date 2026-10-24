@@ -1,5 +1,10 @@
 /* Page layout for the VestaNabu company site.
-   Colors, type and the shared button/input/section classes come from assets/brand/tokens/brand.css (.vn-brand). */
+   Palette, type scale and the shared button/input/section classes come from
+   assets/brand/tokens/brand.css (.vn-brand).
+
+   Colour rule that shapes this file: oxide fails contrast as text on ink
+   (2.88:1) and muted fails too (2.74:1). So the ink section uses chalk for
+   headings, separator for body copy, and oxide only for decorative rules. */
 
 html {
   scroll-behavior: smooth;
@@ -16,9 +21,9 @@ p {
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.22;
   letter-spacing: -0.015em;
   margin: 0 0 var(--vn-space-3);
 }
@@ -30,16 +35,25 @@ h4 {
   margin: 0 0 var(--vn-space-2);
 }
 
-.muted {
-  color: var(--vn-muted);
-}
-
 a {
   color: var(--vn-oxide);
 }
 
 a:hover {
   color: var(--vn-hover);
+}
+
+.muted {
+  color: var(--vn-muted);
+}
+
+/* Reading measure, per the 55-70ch standard. */
+.about-body p,
+.product-detail p,
+.product-feature-body p,
+.offer p,
+.hero-text {
+  max-width: 64ch;
 }
 
 /* Skip link: hidden until it receives keyboard focus */
@@ -59,14 +73,41 @@ a:hover {
   transform: translateY(0);
 }
 
+/* Section index: the numbered device from the brand guide. */
+.section-index {
+  display: flex;
+  align-items: center;
+  gap: var(--vn-space-4);
+  margin: 0 0 var(--vn-space-12);
+  color: var(--vn-oxide);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.section-index::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--vn-separator);
+}
+
+.section-number {
+  font-variant-numeric: tabular-nums;
+}
+
 /* Header */
 .site-header {
+  padding-block: var(--vn-space-6);
+}
+
+.site-header-inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--vn-space-4) var(--vn-space-8);
-  padding-block: var(--vn-space-6);
 }
 
 .site-logo {
@@ -87,6 +128,7 @@ a:hover {
   color: var(--vn-ink);
   font-weight: 500;
   text-decoration: none;
+  transition: color 150ms ease;
 }
 
 .site-nav a:hover {
@@ -95,64 +137,74 @@ a:hover {
   text-underline-offset: 4px;
 }
 
-/* Hero (oxide field, chalk text) */
-.vn-button {
-  box-sizing: border-box;
+/* Hero: oxide field, chalk text. Two columns so the field carries content
+   across its full width instead of leaving the right side empty. */
+.hero {
+  padding-block: clamp(64px, 8vw, 112px);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: var(--vn-space-16);
+  align-items: start;
+}
+
+.hero-eyebrow {
+  grid-column: 1 / -1;
+  margin: 0 0 var(--vn-space-8);
+}
+
+.hero h1 {
+  grid-column: 1;
+  margin: 0;
 }
 
 .headline-line {
   display: block;
 }
 
-.hero {
-  padding-block: var(--vn-space-24) var(--vn-space-16);
+.hero-aside {
+  grid-column: 2;
+  padding-top: var(--vn-space-2);
 }
 
-.hero-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.hero-eyebrow {
+.hero-aside .vn-lead {
   margin-bottom: var(--vn-space-6);
-  opacity: 1;
-}
-
-.hero h1 {
-  margin-bottom: var(--vn-space-6);
-}
-
-.hero-lead {
-  margin-bottom: var(--vn-space-4);
 }
 
 .hero-text {
-  max-width: 60ch;
-  margin-bottom: var(--vn-space-8);
+  margin: 0;
 }
 
 .hero-actions {
+  grid-column: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--vn-space-6);
+  margin-top: var(--vn-space-12);
+}
+
+.vn-button {
+  box-sizing: border-box;
 }
 
 .hero-link {
-  color: var(--vn-chalk);
-  font-weight: 600;
-  min-height: 48px;
   display: inline-flex;
   align-items: center;
+  min-height: 48px;
+  color: var(--vn-chalk);
+  font-weight: 600;
   text-underline-offset: 4px;
+  transition: color 150ms ease;
 }
 
 .hero-link:hover {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-/* About */
+/* Company */
 .about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
@@ -161,14 +213,53 @@ a:hover {
 }
 
 .about-body p {
-  max-width: 62ch;
+  color: var(--vn-muted);
+}
+
+.about-body p:last-child {
+  margin-bottom: 0;
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--vn-space-8);
+  margin: var(--vn-space-16) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.principles li {
+  padding-top: var(--vn-space-6);
+  border-top: 2px solid var(--vn-oxide);
+}
+
+.principles h3 {
+  color: var(--vn-oxide);
+  margin-bottom: var(--vn-space-2);
+}
+
+.principles p {
+  margin: 0;
   color: var(--vn-muted);
 }
 
 /* Products */
+.projects-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--vn-space-12);
+  align-items: baseline;
+  margin-bottom: var(--vn-space-16);
+}
+
+.projects-head h2 {
+  margin: 0;
+}
+
 .section-intro {
+  margin: 0;
   color: var(--vn-muted);
-  margin-bottom: var(--vn-space-12);
 }
 
 .product-list {
@@ -177,62 +268,95 @@ a:hover {
   border-top: 1px solid var(--vn-separator);
 }
 
-/* Identity column stays narrow so the prose column carries the row. */
 .product {
-  display: grid;
-  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-  gap: var(--vn-space-6) var(--vn-space-16);
   padding-block: var(--vn-space-12);
   border-bottom: 1px solid var(--vn-separator);
 }
 
-.product-identity .pill {
+/* Labels are plain type, not pills: the guide reserves the pill for the CTA. */
+.product-label {
+  margin: 0 0 var(--vn-space-4);
+  color: var(--vn-muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.product-label-soon {
+  color: var(--vn-oxide);
+}
+
+.product-name {
+  margin: 0 0 var(--vn-space-2);
+}
+
+/* Feature row: the forthcoming product carries the section's one big moment. */
+.product-feature .product-name {
+  font-size: clamp(26px, 3vw, 34px);
+  letter-spacing: -0.02em;
   margin-bottom: var(--vn-space-4);
 }
 
-.product-identity h3 {
-  margin-bottom: var(--vn-space-2);
+.product-statement {
+  max-width: 14ch;
+  margin: 0;
+  color: var(--vn-oxide);
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+.product-feature-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--vn-space-12);
+  align-items: start;
+}
+
+.product-feature-prose p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Standard rows: narrow identity column, prose column beside it. */
+.product-identity,
+.product-detail {
+  display: block;
+}
+
+.product:not(.product-feature) {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: var(--vn-space-6) var(--vn-space-16);
 }
 
 .product-tagline {
+  margin: 0;
   color: var(--vn-oxide);
   font-size: 19px;
   font-weight: 500;
   line-height: 1.35;
-  margin: 0;
-}
-
-.product-detail p {
-  max-width: 64ch;
 }
 
 .product-detail > p:last-of-type {
   margin-bottom: 0;
 }
 
-.pill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 4px 12px;
-  border: 1px solid var(--vn-separator);
-  border-radius: 999px;
-  color: var(--vn-muted);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.product-forthcoming .pill {
-  border-color: var(--vn-oxide);
-  color: var(--vn-oxide);
-}
-
 .nested-product {
   margin-top: var(--vn-space-6);
   padding: var(--vn-space-6);
-  border-left: 3px solid var(--vn-oxide);
-  background: #FFFFFF;
-  border-radius: var(--vn-radius);
+  border-left: 2px solid var(--vn-oxide);
+  border-radius: 0 var(--vn-radius) var(--vn-radius) 0;
+  background: #ffffff;
+}
+
+.nested-product .product-label {
+  margin-bottom: var(--vn-space-2);
+}
+
+.nested-product p:last-child {
+  margin-bottom: 0;
 }
 
 details {
@@ -264,9 +388,32 @@ details p {
   font-size: 20px;
 }
 
-/* Collaborate */
-.collaborate .section-intro {
-  margin-bottom: var(--vn-space-12);
+/* Collaborate: the page's single dark act.
+   Oxide is unreadable as text here, so it appears only as rules. */
+.collaborate {
+  background: var(--vn-ink);
+  color: var(--vn-chalk);
+}
+
+.collaborate .section-index {
+  color: var(--vn-separator);
+}
+
+.collaborate .section-index::after {
+  background: var(--vn-oxide);
+}
+
+.collaborate-heading {
+  margin: 0 0 var(--vn-space-6);
+  max-width: 18ch;
+}
+
+.collaborate-intro {
+  max-width: 60ch;
+  margin: 0 0 var(--vn-space-16);
+  color: var(--vn-separator);
+  font-size: clamp(20px, 2.1vw, 26px);
+  line-height: 1.45;
 }
 
 .offers {
@@ -279,31 +426,42 @@ details p {
   display: flex;
   flex-direction: column;
   padding-top: var(--vn-space-6);
-  border-top: 1px solid var(--vn-separator);
+  border-top: 2px solid var(--vn-oxide);
 }
 
 .offer-label {
-  color: var(--vn-oxide);
-  margin-bottom: var(--vn-space-3);
+  margin: 0 0 var(--vn-space-4);
+  color: var(--vn-separator);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.offer h3 {
+  color: var(--vn-chalk);
 }
 
 .offer p {
   flex-grow: 1;
+  color: var(--vn-separator);
 }
 
 .offer-link {
   display: inline-flex;
   align-items: center;
   min-height: 48px;
+  color: var(--vn-chalk);
   font-weight: 600;
   text-underline-offset: 4px;
+  transition: color 150ms ease;
 }
 
-/* Inquiry form: left-aligned in the shell, like every other section. */
-.inquiry {
-  border-top: 1px solid var(--vn-separator);
+.offer-link:hover {
+  color: #ffffff;
 }
 
+/* Contact */
 .inquiry-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
@@ -311,7 +469,7 @@ details p {
   align-items: start;
 }
 
-.inquiry-grid > h2 {
+.inquiry-intro .vn-h2 {
   margin: 0;
 }
 
@@ -354,7 +512,6 @@ details p {
 }
 
 .form-submit:disabled {
-  opacity: 1;
   background: var(--vn-input-border);
   cursor: wait;
 }
@@ -363,26 +520,19 @@ details p {
   min-height: 1.5em;
   margin: 0;
   font-size: 16px;
-}
-
-.form-status[data-state="success"] {
-  color: var(--vn-ink);
   font-weight: 600;
-}
-
-.form-status[data-state="error"] {
   color: var(--vn-ink);
-  font-weight: 600;
 }
 
+/* Status is carried by text, never colour alone. */
 .form-status[data-state="error"]::before {
   content: "Error: ";
   color: var(--vn-oxide);
 }
 
-/* Footer (ink field, chalk logo) */
+/* Footer: ink field, reversed mark. */
 .site-footer {
-  padding-block: var(--vn-space-16);
+  padding-top: var(--vn-space-16);
   background: var(--vn-ink);
   color: var(--vn-chalk);
 }
@@ -392,12 +542,18 @@ details p {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--vn-space-12);
+  padding-bottom: var(--vn-space-12);
 }
 
 .footer-logo {
   display: block;
   width: clamp(152px, 18vw, 208px);
   height: auto;
+}
+
+.footer-slogan {
+  margin: var(--vn-space-4) 0 0;
+  color: var(--vn-separator);
 }
 
 .footer-details p {
@@ -411,55 +567,92 @@ details p {
 }
 
 .footer-details a:hover {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .footer-legal {
   font-weight: 600;
 }
 
-.footer-copy {
-  margin-top: var(--vn-space-6);
+.footer-address {
+  color: var(--vn-separator);
+}
+
+.footer-base {
+  padding-block: var(--vn-space-6);
+  border-top: 1px solid var(--vn-oxide);
+}
+
+.footer-base p {
+  margin: 0;
   color: var(--vn-separator);
   font-size: 15px;
 }
 
 /* Tablet */
 @media (max-width: 1024px) {
-  .offers {
+  .hero-grid {
     grid-template-columns: 1fr;
-    gap: var(--vn-space-12);
   }
 
-  .offer {
-    padding-top: var(--vn-space-6);
+  .hero h1,
+  .hero-aside,
+  .hero-actions {
+    grid-column: 1;
+  }
+
+  .hero-aside {
+    padding-top: var(--vn-space-8);
+  }
+
+  .hero-actions {
+    margin-top: var(--vn-space-8);
   }
 
   .about-grid,
-  .inquiry-grid {
+  .inquiry-grid,
+  .projects-head,
+  .product-feature-body {
     grid-template-columns: 1fr;
     gap: var(--vn-space-6);
+  }
+
+  .projects-head {
+    margin-bottom: var(--vn-space-12);
   }
 
   .inquiry-grid {
     gap: var(--vn-space-8);
   }
+
+  .principles,
+  .offers {
+    grid-template-columns: 1fr;
+    gap: var(--vn-space-8);
+  }
+
+  .product-statement {
+    max-width: 24ch;
+  }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .product {
+  .section-index {
+    margin-bottom: var(--vn-space-8);
+  }
+
+  .product:not(.product-feature) {
     grid-template-columns: 1fr;
     gap: var(--vn-space-4);
+  }
+
+  .product {
     padding-block: var(--vn-space-8);
   }
 
   .form-row {
     grid-template-columns: 1fr;
-  }
-
-  .hero {
-    padding-block: var(--vn-space-16) var(--vn-space-12);
   }
 
   .form-submit {
@@ -484,6 +677,10 @@ details p {
 
   .hero-actions .vn-button {
     width: 100%;
+  }
+
+  .nested-product {
+    padding: var(--vn-space-4);
   }
 }
 

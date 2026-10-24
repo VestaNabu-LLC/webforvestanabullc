@@ -24,35 +24,40 @@
     <link rel="alternate icon" href="assets/brand/icons/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="assets/brand/icons/apple-touch-icon.png" />
     <link rel="manifest" href="assets/brand/icons/site.webmanifest" />
+    <link rel="preload" as="font" type="font/woff2" href="assets/brand/fonts/InstrumentSans-Variable.woff2" crossorigin />
     <link rel="stylesheet" href="assets/brand/tokens/brand.css" />
     <!-- Versioned so a layout change can't be served against a 4h edge-cached stylesheet. Bump on CSS changes. -->
-    <link rel="stylesheet" href="styles.css?v=2" />
+    <link rel="stylesheet" href="styles.css?v=3" />
   </head>
   <body class="vn-brand" id="top">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header vn-shell">
-      <a class="site-logo" href="#top" aria-label="VestaNabu home">
-        <img class="vn-logo" src="assets/brand/logos/svg/logo-horizontal-oxide.svg" alt="VestaNabu" width="377" height="108" />
-      </a>
-      <nav class="site-nav" aria-label="Main">
-        <a href="#projects">Products</a>
-        <a href="#about">Company</a>
-        <a href="#work-with-us">Collaborate</a>
-        <a href="#inquiry">Contact</a>
-      </nav>
+    <header class="site-header">
+      <div class="vn-shell site-header-inner">
+        <a class="site-logo" href="#top" aria-label="VestaNabu home">
+          <img class="vn-logo" src="assets/brand/logos/svg/logo-horizontal-oxide.svg" alt="VestaNabu" width="377" height="108" />
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <a href="#projects">Products</a>
+          <a href="#about">Company</a>
+          <a href="#work-with-us">Collaborate</a>
+          <a href="#inquiry">Contact</a>
+        </nav>
+      </div>
     </header>
 
     <main id="main">
       <section class="hero vn-inverse">
-        <div class="vn-shell hero-inner">
+        <div class="vn-shell hero-grid">
           <p class="vn-label hero-eyebrow">Independent product company</p>
           <h1 class="vn-h1"><span class="headline-line">Good ideas,</span> <span class="headline-line">seen through.</span></h1>
-          <p class="vn-lead hero-lead">We create focused digital products and keep making them better.</p>
-          <p class="hero-text">
-            From specialist software to everyday applications, we build around clear needs. We also work with others to
-            shape, build and launch useful ideas.
-          </p>
+          <div class="hero-aside">
+            <p class="vn-lead">We create focused digital products and keep making them better.</p>
+            <p class="hero-text">
+              From specialist software to everyday applications, we build around clear needs. We also work with others
+              to shape, build and launch useful ideas.
+            </p>
+          </div>
           <div class="hero-actions">
             <a class="vn-button" href="#projects">Explore our work</a>
             <a class="hero-link" href="#work-with-us">Build with us</a>
@@ -61,58 +66,82 @@
       </section>
 
       <section id="about" class="vn-section">
-        <div class="vn-shell about-grid">
-          <h2 class="vn-h2">Different ideas. Shared commitment.</h2>
-          <div class="about-body">
-            <p>
-              VestaNabu creates, owns and looks after products for different people and different needs. What connects
-              the work is a practical approach: understand the problem, bring the right abilities together, and keep
-              improving the result.
-            </p>
-            <p>
-              Different interests and perspectives help us notice opportunities from more than one angle. Each product
-              has room to develop its own identity and audience.
-            </p>
+        <div class="vn-shell">
+          <p class="section-index"><span class="section-number">01</span> Company</p>
+
+          <div class="about-grid">
+            <h2 class="vn-h2">Different ideas.<br />Shared commitment.</h2>
+            <div class="about-body">
+              <p>
+                VestaNabu creates, owns and looks after products for different people and different needs. What connects
+                the work is a practical approach: understand the problem, bring the right abilities together, and keep
+                improving the result.
+              </p>
+              <p>
+                Different interests and perspectives help us notice opportunities from more than one angle. Each product
+                has room to develop its own identity and audience.
+              </p>
+            </div>
           </div>
+
+          <ul class="principles">
+            <li>
+              <h3>Think independently.</h3>
+              <p>Different interests and abilities reveal opportunities across categories.</p>
+            </li>
+            <li>
+              <h3>Make with purpose.</h3>
+              <p>The work begins with a clear need and aims for a useful result.</p>
+            </li>
+            <li>
+              <h3>Stay with the work.</h3>
+              <p>Ownership includes maintenance, refinement and continued care.</p>
+            </li>
+          </ul>
         </div>
       </section>
 
       <section id="projects" class="vn-section projects">
         <div class="vn-shell">
-          <h2 class="vn-h2">Our products</h2>
-          <p class="section-intro">Focused products, each with a purpose and a character of its own.</p>
+          <p class="section-index"><span class="section-number">02</span> Products</p>
+
+          <div class="projects-head">
+            <h2 class="vn-h2">Our products</h2>
+            <p class="section-intro">Focused products, each with a purpose and a character of its own.</p>
+          </div>
 
           <div class="product-list">
-            <article class="product product-forthcoming">
-              <div class="product-identity">
-                <span class="pill">Coming soon</span>
-                <h3>VestaNabu</h3>
-                <p class="product-tagline">Memories stay. Stories travel.</p>
-              </div>
-              <div class="product-detail">
-                <p class="muted">
-                  Some moments were meant to stay put. Others deserve to be shared. A new home for both is on its way.
-                </p>
-                <details>
-                  <summary>Learn more</summary>
-                  <p class="muted">We are keeping the details close for now. Check back soon.</p>
-                </details>
+            <article class="product product-feature">
+              <p class="product-label product-label-soon">Coming soon</p>
+              <h3 class="product-name">VestaNabu</h3>
+              <div class="product-feature-body">
+                <p class="product-statement">Memories stay. Stories travel.</p>
+                <div class="product-feature-prose">
+                  <p class="muted">
+                    Some moments were meant to stay put. Others deserve to be shared. A new home for both is on its way.
+                  </p>
+                  <details>
+                    <summary>Learn more</summary>
+                    <p class="muted">We are keeping the details close for now. Check back soon.</p>
+                  </details>
+                </div>
               </div>
             </article>
 
             <article class="product">
               <div class="product-identity">
-                <span class="pill">Software brand</span>
-                <h3>Monaidea</h3>
+                <p class="product-label">Software brand</p>
+                <h3 class="product-name">Monaidea</h3>
                 <p class="product-tagline">Small and elegant solutions for niche areas.</p>
               </div>
               <div class="product-detail">
                 <p class="muted">
-                  Part of the VestaNabu family, the software brand behind our focused tools. Visit
+                  Our software brand for focused tools. Visit
                   <a href="https://monaidea.com" rel="noopener">monaidea.com</a>.
                 </p>
 
                 <div class="nested-product">
+                  <p class="product-label">Inside Monaidea</p>
                   <h4>Ledgerstone for Jira</h4>
                   <p class="muted">A read-only permission audit for Jira Cloud administrators. Free for up to 10 users.</p>
                   <details>
@@ -129,8 +158,8 @@
 
             <article class="product">
               <div class="product-identity">
-                <span class="pill">Local marketplace</span>
-                <h3>snap2local</h3>
+                <p class="product-label">Local marketplace</p>
+                <h3 class="product-name">snap2local</h3>
                 <p class="product-tagline">Buy and sell, right around the corner.</p>
               </div>
               <div class="product-detail">
@@ -153,34 +182,34 @@
 
       <section id="work-with-us" class="vn-section collaborate">
         <div class="vn-shell">
-          <h2 class="vn-h2">Have something useful in mind?</h2>
-          <p class="section-intro">
+          <p class="section-index"><span class="section-number">03</span> Collaborate</p>
+
+          <h2 class="vn-h2 collaborate-heading">Have something useful in mind?</h2>
+          <p class="collaborate-intro">
             Bring us an idea, a technical question or an opportunity to work together. Let's work through it.
           </p>
 
           <div class="offers">
             <article class="offer">
-              <p class="vn-label offer-label">Build together</p>
+              <p class="offer-label">Build together</p>
               <h3>From an idea to a working product.</h3>
-              <p class="muted">We help shape, build and launch apps, tools and marketplaces around real needs.</p>
+              <p>We help shape, build and launch apps, tools and marketplaces around real needs.</p>
               <a class="offer-link" href="#inquiry">Start a conversation</a>
             </article>
 
             <article class="offer">
-              <p class="vn-label offer-label">Consulting</p>
+              <p class="offer-label">Consulting</p>
               <h3>A clear view of the technical work.</h3>
-              <p class="muted">
+              <p>
                 Tell us what you're working on. We can help you understand the options and find a practical way forward.
               </p>
               <a class="offer-link" href="#inquiry">Ask for advice</a>
             </article>
 
             <article class="offer">
-              <p class="vn-label offer-label">Partners</p>
+              <p class="offer-label">Partners</p>
               <h3>Complementary skills. Shared work.</h3>
-              <p class="muted">
-                We work with agencies, studios and other builders where our abilities can strengthen one another.
-              </p>
+              <p>We work with agencies, studios and other builders where our abilities can strengthen one another.</p>
               <a class="offer-link" href="#inquiry">Explore a partnership</a>
             </article>
           </div>
@@ -189,9 +218,12 @@
 
       <section class="vn-section inquiry">
         <div class="vn-shell inquiry-grid">
-          <h2 class="vn-h2">Tell us what you have in mind.</h2>
+          <div class="inquiry-intro">
+            <p class="section-index"><span class="section-number">04</span> Contact</p>
+            <h2 class="vn-h2">Tell us what you have in mind.</h2>
+          </div>
 
-            <form id="inquiry" class="inquiry-form" action="#" method="post" novalidate>
+          <form id="inquiry" class="inquiry-form" action="#" method="post" novalidate>
             <div class="form-row">
               <label class="form-field">
                 <span class="vn-label">Name</span>
@@ -227,20 +259,25 @@
 
             <button class="vn-button form-submit" type="submit">Send message</button>
             <p class="form-status" role="status" aria-live="polite"></p>
-            </form>
+          </form>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="vn-shell footer-inner">
-        <img class="footer-logo" src="assets/brand/logos/svg/logo-horizontal-chalk.svg" alt="VestaNabu" width="377" height="108" />
+        <div class="footer-brand">
+          <img class="footer-logo" src="assets/brand/logos/svg/logo-horizontal-chalk.svg" alt="VestaNabu" width="377" height="108" />
+          <p class="footer-slogan">Good ideas, seen through.</p>
+        </div>
         <div class="footer-details">
           <p class="footer-legal">VestaNabu LLC</p>
           <p><a href="mailto:info@vestanabullc.com">info@vestanabullc.com</a></p>
-          <p>202 N Cedar Ave, Ste 1<br />Owatonna, MN 55060</p>
-          <p class="footer-copy">&copy; 2026 VestaNabu LLC. All rights reserved.</p>
+          <p class="footer-address">202 N Cedar Ave, Ste 1<br />Owatonna, MN 55060</p>
         </div>
+      </div>
+      <div class="vn-shell footer-base">
+        <p>&copy; 2026 VestaNabu LLC. All rights reserved.</p>
       </div>
     </footer>
 
