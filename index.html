@@ -27,7 +27,7 @@
     <link rel="preload" as="font" type="font/woff2" href="assets/brand/fonts/InstrumentSans-Variable.woff2" crossorigin />
     <link rel="stylesheet" href="assets/brand/tokens/brand.css" />
     <!-- Bump this AND the script.js version together on every CSS or JS change. -->
-    <link rel="stylesheet" href="styles.css?v=9" />
+    <link rel="stylesheet" href="styles.css?v=10" />
     <script>
       /* Set before first paint so reveal start-states never flash.
          Without JS the class is absent and all content stays visible. */
@@ -176,27 +176,50 @@
               <h3 class="product-name">Monaidea</h3>
               <p class="tagline">Small and elegant solutions for niche areas.</p>
               <p class="dim">
-                Our software brand for focused tools. Visit
+                Our software brand for focused tools, now with two. Visit
                 <a href="https://monaidea.com" rel="noopener">monaidea.com</a>.
               </p>
 
               <div class="nested">
                 <p class="nested-label">Inside Monaidea</p>
-                <h4>Ledgerstone for Jira</h4>
-                <p class="dim">A read-only permission audit for Jira Cloud administrators.</p>
-                <ul class="chips">
-                  <li>Read-only</li>
-                  <li>Jira Cloud</li>
-                  <li>Free up to 10 users</li>
-                </ul>
-                <details>
-                  <summary><span>Learn more</span></summary>
+
+                <div class="nested-item">
+                  <div class="nested-head">
+                    <h4>Ledgerstone for Jira</h4>
+                    <span class="chip chip-accent chip-sm">On the Marketplace</span>
+                  </div>
                   <p class="dim">
-                    See how open your Jira really is: permission schemes, shared filters and dashboards, roles, groups
-                    and accounts, with a weekly trend. Find it on the
-                    <a href="https://ledgerstone.monaidea.com/" rel="noopener">Ledgerstone site</a>.
+                    See who can see and change what in Jira: permission schemes, shared filters and dashboards, roles,
+                    groups and accounts, with a weekly trend.
                   </p>
-                </details>
+                  <ul class="chips">
+                    <li>Read-only</li>
+                    <li>Jira Cloud</li>
+                    <li>Free up to 10 users</li>
+                  </ul>
+                  <a class="arrow-link arrow-sm" href="https://ledgerstone.monaidea.com/" rel="noopener">
+                    <span>ledgerstone.monaidea.com</span>
+                  </a>
+                </div>
+
+                <div class="nested-item">
+                  <div class="nested-head">
+                    <h4>Flagstone for Confluence</h4>
+                    <span class="chip chip-sm">In review</span>
+                  </div>
+                  <p class="dim">
+                    Every open task and unresolved comment across your Confluence spaces, in one place: what is overdue,
+                    what is due this week, and which comments are still waiting for an answer.
+                  </p>
+                  <ul class="chips">
+                    <li>Read-only</li>
+                    <li>Confluence</li>
+                    <li>Nothing leaves Atlassian</li>
+                  </ul>
+                  <a class="arrow-link arrow-sm" href="https://flagstone.monaidea.com/" rel="noopener">
+                    <span>flagstone.monaidea.com</span>
+                  </a>
+                </div>
               </div>
             </article>
 
@@ -343,6 +366,6 @@
     </footer>
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    <script src="script.js?v=9" defer></script>
+    <script src="script.js?v=10" defer></script>
   </body>
 </html>

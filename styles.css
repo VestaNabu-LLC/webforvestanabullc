@@ -582,7 +582,7 @@ h4 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--s6);
-  align-items: stretch;
+  align-items: start;
 }
 
 .product {
@@ -725,6 +725,44 @@ h4 {
 
 .nested p:last-child {
   margin-bottom: 0;
+}
+
+/* Two tools now live inside Monaidea, so the nested panel is a short list. */
+.nested-item + .nested-item {
+  margin-top: var(--s4);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--line);
+}
+
+.nested-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3);
+  margin-bottom: var(--s2);
+}
+
+.nested-head h4 {
+  margin: 0;
+}
+
+.chip-sm {
+  min-height: 24px;
+  padding: 0 var(--s3);
+  font-size: 12px;
+}
+
+.nested-item > p {
+  margin-bottom: var(--s3);
+}
+
+.nested-item .chips {
+  margin-bottom: var(--s2);
+}
+
+.arrow-sm {
+  min-height: 34px;
+  font-size: 14px;
 }
 
 .card-foot {
