@@ -756,6 +756,65 @@ h4 {
   margin-bottom: var(--s3);
 }
 
+/* Admin Kits is a collection rather than a single tool, so the things inside it
+   sit one level deeper than the apps. Another kit is one more row here; another
+   category is one more .nested-item. */
+.kits {
+  display: grid;
+  gap: var(--s2);
+  margin: 0 0 var(--s3);
+  padding: 0;
+  list-style: none;
+}
+
+.kits a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3) var(--s4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    border-color 220ms var(--ease),
+    background 220ms var(--ease);
+}
+
+.kits a::after {
+  content: "\2192";
+  color: var(--accent);
+  transition: transform 220ms var(--ease);
+}
+
+.kits a:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.kits a:hover::after {
+  transform: translateX(3px);
+}
+
+.kit-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px var(--s3);
+  min-width: 0;
+}
+
+.kit-name {
+  font-weight: 500;
+}
+
+.kit-meta {
+  color: var(--dim);
+  font-size: 13px;
+}
+
 .nested-item .chips {
   margin-bottom: var(--s2);
 }
